@@ -1,0 +1,22 @@
+.avatar {
+  display: block;
+  max-width: 100%;
+  border: 3px solid black;
+}
+
+.home-div-right {
+  display: block;
+  float: right;
+  margin-left: 40px;
+  max-width: 40%;
+}
+
+.basic-list {
+  margin-left: 0;
+  list-style: none;
+
+  > li {
+    margin-bottom: $spacing-unit \ 2;
+  }
+}
+
