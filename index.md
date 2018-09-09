@@ -9,8 +9,7 @@ layout: home
 optimised list of buzzwordy skills below. if you are here on purpose, then you know
 that I am a Software / Systems Engineer. you know that I work at <a href="https://pivotal.io/">Pivotal</a> and that I build
 containers and that I then go to conferences and stand on stage talking about building those containers.
-or you are here because you are actually looking for unicorns and my url is
-misleading... I can't help you with that.</p>
+</p>
 
 <p>
 here is that seo-d list of things I do:
@@ -32,7 +31,7 @@ here is that seo-d list of things I do:
 <li> ci/cd </li>
 <li> tdd </li>
 <li> pair programming </li>
-<li> talking about those things at conferences </li>
+<li> conference talking </li>
 </ul>
 </p>
 
