@@ -20,6 +20,9 @@ then went to a web-dev bootcamp called <a href="https://makers.tech/">Makers Aca
 only vaguely used as I did not become a web d3vel0per but somehow ended up deep in cloud computing.
 </p>
 <p>
+in other lives I was a bar/nightclub manager, a copy-editor/proofreader, and an esl teacher (this one in Rome).
+</p>
+<p>
 I now live in East London with my wife (also an engineer) and our many cactuses (cacti? cactae?).
 </p>
 </div>
