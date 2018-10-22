@@ -9,7 +9,7 @@ permalink: /talks/
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     <li>
       <span class="post-meta">{{ "2018-10-10" | date: date_format }}</span>
-        <a class="post-link" href="/placeholder">
+        <a class="post-link" href="https://www.youtube.com/watch?v=iFo1KrxdOts&t=1s">
           {{ "The Route to Rootless Containers" | escape }}
         </a>
       <span class="post-meta"><a href="https://www.cloudfoundry.org/event/eusummit2018/">{{ "Cloud Foundry Summit Europe 2018" | escape }}</a></span>
