@@ -6,12 +6,12 @@ permalink: /about/
 
 <div class="home">
 <p>
-I like reading and cooking and diy and programming and tattoos and martial arts and hiking and trekking
+I like reading and cooking and diy and programming and tattoos and martial arts and trekking
 (not the kind of trekking where you dress up and maybe nimoy is there, but the kind
 of trekking where it is just you in a remote mountain range with a tent and 2 weeks
-of rations). on my days off I will either aim to read and finish a book or
+of rations). On my days off I will either aim to read and finish a book or
 I will look for something in my home which needs the sort of fixing that can only
-be done by my most heaviest most loudest tools. unless I am speaking at a conference
+be done by my most heaviest, most loudest tools. Unless I am speaking at a conference
 and then I will fret over that.
 </p>
 <p>
@@ -20,7 +20,7 @@ then went to a web-dev bootcamp called <a href="https://makers.tech/">Makers Aca
 only vaguely used as I did not become a web d3vel0per but somehow ended up deep in cloud computing.
 </p>
 <p>
-in other lives I was a bar/nightclub manager, a copy-editor/proofreader, and an esl teacher (this one in Rome).
+In other lives I was a bar/nightclub manager, a copy-editor/proofreader, and an ESL teacher (this one in Rome).
 </p>
 <p>
 I now live in East London with my wife (also an engineer) and our many cactuses (cacti? cactae?).

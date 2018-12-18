@@ -5,14 +5,14 @@ layout: home
 <link rel="stylesheet" href="/css/mine.css">
 <div>
 <div class="home-div-right"><img class="avatar" src="https://avatars0.githubusercontent.com/u/8898786?s=400&v=4"></div>
-<p>hi! welcome to my random collection of things I have done and things I can do. if you are here by accident, it is probably because your search hit my
-optimised list of buzzwordy skills below. if you are here on purpose, then you know
-that I am a Software / Systems Engineer. you know that I work at <a href="https://pivotal.io/">Pivotal</a> and that I build
+<p>Hi! Welcome to my random collection of things I have done and things I can do. If you are here by accident, it is probably because your search hit my
+optimised list of buzzwordy skills below. If you are here on purpose, then you know
+that I am a Software / Systems Engineer. You know that I work at <a href="https://pivotal.io/">Pivotal</a> and that I build
 containers and that I then go to conferences and stand on stage talking about building those containers.
 </p>
 
 <p>
-here is that seo-d list of things I do:
+Here is that seo-d list of things I do:
 <ul>
 <li> containers </li>
 <li> linux </li>
@@ -36,9 +36,9 @@ here is that seo-d list of things I do:
 </p>
 
 <p>
-things I don't do:
+Things I don't do:
 <ul>
-<li> web d3vel0pment (avoid those hits) or design. making this site was so tedious and I didn't even really do it myself I used <a href="https://jekyllrb.com/">Jekyll</a>. </li>
+<li> Web d3vel0pment (avoid those hits) or design. Making this site was so tedious and I didn't even really do it myself I used <a href="https://jekyllrb.com/">Jekyll</a>. </li>
 </ul>
 </p>
 </div>
