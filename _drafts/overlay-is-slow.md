@@ -3,7 +3,7 @@ layout: post
 title: "Overlay is Slow(er than before)"
 ---
 
-## TL;DR:
+## **TL;DR:**
 
 _Spoiler alert!!_
 
@@ -15,19 +15,19 @@ Fortunately, because of luck or magic, we may have already solved* the problem l
 _\*got around_
 
 
-## The Full Story
+## **The Full Story**
 
 So, one day towards the end of September, we looked up at our team CI/Performance monitor and saw this:
 
 ![alt text](/assets/blog/cfscalegraph "one of our monitoring graphs")
 
-I bet that, despite having been given zero context and perhaps not even knowing what my team does,
-you looked at that graph and thought "oh damn". The reason you thought this (or maybe almost this) because everyone knows that
+I bet that, despite having been given limited context and perhaps not even knowing what my team does,
+you looked at that graph and thought "oh damn". The reason you thought this (maybe not exactly this) is because everyone knows that
 sudden changes in graphs either mean something very good just happened or something very not good just happened.
 
 This was the second thing.
 
-I'll go back a bit. My team provides the container runtime for the open source PaaS, Cloud Foundry. Essentially what
+I'll go back a bit. My team provides the container runtime for the open source PaaS, [Cloud Foundry](https://www.cloudfoundry.org/). Essentially what
 this boils down to is: when application developers push their code to the cloud, after various things going through
 various components, we will ensure that app code is booted inside a secure and isolated environment. And we will ensure that it
 is booted _quickly_. Speed is, after all, one of the many reasons we love and use containers for this sort of thing.
@@ -44,15 +44,14 @@ has been testing against both for a while to ensure compatibility, with a heavy 
 I just happened to notice on that fateful day that the VMs we were using to get the data for that particular graph were provisioned with Trusty, so I
 thought it sensible to switch them over.
 
-This turned out to be a good idea: it would have been very embarrassing to have got all the way to prod (not yet on Xenial) without
+This turned out to be a good idea: it would have been very embarrassing to have got all the way to prod (at this time not yet on Xenial) without
 noticing an up to 10s increase in application start times.
 
 So what is this graph actually showing? It is not showing an individual application create nor is it showing just the container components.
 It is measuring the application developer's whole experience of scaling an already running application from 1 to 10 instances.
 
-The sequence of events are as follows:
-- The application developer requests their app be scaled up to 10 instances
-- The asynchronous request from the CLI goes to the Cloud Controller
+The abridged sequence of events is as follows:
+- The asynchronous request from the app developer (via CLI) goes to the Cloud Controller
 - The Cloud Controller forwards the request to the Diego-Cell (the scheduler)
 - The Rep component in the Cell asks Garden-Runc (that's us!) to create 9 new containers
 - Garden-Runc creates those containers
@@ -68,65 +67,71 @@ It is the time taken for all of this which is plotted in that graph.
 With so much going on over which we have no control, it was very possible that the slowdown was not down to us at all. But knowing our luck
 and our track record with major environmental shifts, honestly it was always going to be us.
 
-# 1: Logs
+# **1: Logs**
 
 Obviously we started with our logs. Garden-Runc components log _a lot_, so we started by pushing an app to our environment, grepping all mentions of that
 handle in `garden.stdout.log`, and having a good ol' read. And what we saw was:
 
-TODO: liveness or readiness?
 ```
-{"timestamp":"2018-10-24T11:39:55.231873213Z","message":"guardian.run.create-pea.clean-pea.image-plugin-destroy.grootfs.delete.groot-deleting.deleting-image.overlayxfs-destroying-image.starting","data":{"handle":"2d8f7e6d-66fa-4e5d-5cc1-da07-liveness-healthcheck-0"}}
-{"timestamp":"2018-10-24T11:40:03.189979808Z","message":"guardian.run.create-pea.clean-pea.image-plugin-destroy.grootfs.delete.groot-deleting.deleting-image.overlayxfs-destroying-image.ending","data":{"handle":"2d8f7e6d-66fa-4e5d-5cc1-da07-liveness-healthcheck-0"}}
+{"timestamp":"2018-10-24T11:39:55.231873213Z","message":"guardian.run.create-pea.clean-pea.image-plugin-destroy.grootfs.delete.groot-deleting.deleting-image.overlayxfs-destroying-image.starting","data":{"handle":"2d8f7e6d-66fa-4e5d-5cc1-da07-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-24T11:40:03.189979808Z","message":"guardian.run.create-pea.clean-pea.image-plugin-destroy.grootfs.delete.groot-deleting.deleting-image.overlayxfs-destroying-image.ending","data":{"handle":"2d8f7e6d-66fa-4e5d-5cc1-da07-readiness-healthcheck-0"}}
 ```
-_thanks to Nima Kaviani for PRing human-readable timestamps and saving me a lot of tediousness!_
+_Thanks to Nima Kaviani for PRing human-readable timestamps and saving me a lot of tediousness!_
 
 Why are we deleting an image? What is an image? What is a grootfs? What is a "pea"? Why does it need cleaning? Aren't we meant to be creating things here?
 
 There is a lot of info in these logs (even though I have edited them for you), so let's break them down.
 
-Guardian and GrootFS are components of Garden-Runc. Guardian is our container creator. It prepares an OCI compliant container spec, and then passes that to [runc](https://github.com/opencontainers/runc),
-our container runtime, which creates and runs a container based on that spec. Before Guardian calls runc, it asks GrootFS (an image plugin) to create a root filesystem for the
+Guardian and GrootFS are components of [Garden-Runc](https://github.com/cloudfoundry/garden-runc-release). [Guardian](https://github.com/cloudfoundry/guardian) is our container creator. It prepares an OCI compliant container spec, and then passes that to [runc](https://github.com/opencontainers/runc),
+our container runtime, which creates and runs a container based on that spec. Before Guardian calls runc, it asks [GrootFS](https://github.com/cloudfoundry/grootfs) (an image plugin) to create a root filesystem for the
 container. GrootFS imports the filesystem layers and uses OverlayFS to combine them and provide read-write mountpoint which acts as the container's rootfs. The
 path to this rootfs is included in the spec which Guardian passes to runc so that runc can [pivot_root](http://man7.org/linux/man-pages/man2/pivot_root.2.html) to the right place.
 
 (_for more on container root filesystems, see [Container Root Filesystems in Production](/2017/09/08/container-rootfilesystems-in-prod)_)
 
 A Pea is our name for a sidecar container. (Docker groups their sidecars into a Pod, as in a pod of whales. We are Garden so our sidecars are peas... in a pod.
-Yes, it is hilarious.) Sidecar containers are associated with 'full' containers and share some of the resources and configuration of their parent.
-Crucially, in the context of our Problem, they have their own root filesystem. In the case of the logs above, the sidecar (pea) was created to run a process which checks
+Yes, it is hilarious.) Sidecar containers are associated with "full" containers and share some of the resources and configuration of their parent, but can be limited in a different way.
+Crucially, in the context of our problem, they have their own root filesystem. In the case of the logs above, the sidecar (pea) was created to run a process which checks
 whether the primary application container has booted successfully. When the process detects that the app is up and running, it exits, which triggers the teardown
-of its resources, namely the rootfs.
+of its resources, including the rootfs.
 
-So that is what we are seeing here: for whatever reason we have yet to discover, after a pea has determined that our app is running and goes into teardown,
-GrootFS is taking ~8s to delete its rootfs.
+So that is what we are seeing here: for whatever reason we have yet to discover, after a pea has determined that our developer's app is running and goes into teardown,
+GrootFS is taking ~8s to delete its root filesystem.
 
 Given that this slowness appeared right after I bumped our VMs' OS, which we know included a jump from a 4.4 kernel to a 4.15 kernel, I was immediately Very Suspicious
 that we were apparently losing time in a rootfs deletion.
 
-But there is more to a GrootFS rootfs (_sigh_) delete than a unmount syscall, so we needed a little more evidence before wading into a kernel bisection.
+But there is more to a GrootFS rootfs (_sigh, naming_) delete than a unmount syscall, so we needed a little more evidence before wading into a kernel bisection.
 
-# 2: More logs
+# **2: More Logs**
 
 So we added even more log lines to GrootFS and pushed another app.
 
 ```
-{"timestamp":"2018-10-25T13:12:25.314306368Z","message":"...deleting-image.overlayxfs-destroying-image.starting","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
-{"timestamp":"2018-10-25T13:12:25.331496182Z","message":"...deleting-image.overlayxfs-destroying-image.getting-project-quota-id","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
-{"timestamp":"2018-10-25T13:12:25.333481923Z","message":"...deleting-image.overlayxfs-destroying-image.project-id-acquired","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
-{"timestamp":"2018-10-25T13:12:25.335395181Z","message":"...deleting-image.overlayxfs-destroying-image.unmounting-image","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
-{"timestamp":"2018-10-25T13:12:32.528611226Z","message":"...deleting-image.overlayxfs-destroying-image.image-unmounted","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
-{"timestamp":"2018-10-25T13:12:32.529112053Z","message":"...deleting-image.overlayxfs-destroying-image.removing-image-dir","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
-{"timestamp":"2018-10-25T13:12:32.549213494Z","message":"...deleting-image.overlayxfs-destroying-image.image-dir-deleted","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
-{"timestamp":"2018-10-25T13:12:32.550306115Z","message":"...deleting-image.overlayxfs-destroying-image.ending","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f"}}
+{"timestamp":"2018-10-25T13:12:25.314306368Z","message":"...deleting-image.overlayxfs-destroying-image.starting","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-25T13:12:25.331496182Z","message":"...deleting-image.overlayxfs-destroying-image.getting-project-quota-id","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-25T13:12:25.333481923Z","message":"...deleting-image.overlayxfs-destroying-image.project-id-acquired","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-25T13:12:25.335395181Z","message":"...deleting-image.overlayxfs-destroying-image.unmounting-image","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-25T13:12:32.528611226Z","message":"...deleting-image.overlayxfs-destroying-image.image-unmounted","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-25T13:12:32.529112053Z","message":"...deleting-image.overlayxfs-destroying-image.removing-image-dir","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-25T13:12:32.549213494Z","message":"...deleting-image.overlayxfs-destroying-image.image-dir-deleted","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
+{"timestamp":"2018-10-25T13:12:32.550306115Z","message":"...deleting-image.overlayxfs-destroying-image.ending","data":{"handle":"6a0aed04-fe8e-47a2-5d0b-dfbfc165534f-readiness-healthcheck-0"}}
 ```
 
 [The code](https://github.com/cloudfoundry/grootfs/blob/afb5cee1eb3b8c767f6a07c0b36a9f36e666d2dd/store/filesystems/overlayxfs/driver.go#L683-L685) between those two log lines was doing a `syscall.Unmount` and nothing more. 
 
 Now that this was looking like a kernel thing and not a Garden/CF thing, we needed to tighten our testing loop.
 
-# 3: Reliable reproduction
+# **3: Reliable Reproduction**
 
-We created a small bash script which mimicked a scale at the filesystem level, which would...
+At the Garden level, and certainly at the GrootFS level, there is no knowledge of an "application". To Garden a scaled application is the same as an initial application: all
+it sees is containers. Peas (sidecars) are handled a little differently by Guardian and therefore follow their own code divergence, but to Runc (the thing handling the creation)
+a Sidecar container is just another container. Garden may think it has created 10 containers with 10 sidecars, but Runc knows it has simply created 20 containers.
+
+Going further, what does GrootFS know? GrootFS has the least awareness of anything containery. It just simply, on request, creates a mounted directory which could maybe be used as a root filesystem.
+
+Given that a syscall in heart of GrootFS has the most incidental and tenuous connection to a CF application, we were able cut out a great many extraneous parts and just use
+a small bash script to mimic an application scale at the filesystem level:
 
 - serially create 10 overlay mounts
 - unmount all mounts simultaneously
@@ -135,18 +140,18 @@ We created a small bash script which mimicked a scale at the filesystem level, w
 
 But it showed nothing. Unmounts went through in under a second. Were we wrong?
 
-Looking back through the logs, we remembered that, of course, a container rootfs wouldn't just be mounted and then unmounted: application code had to be
-streamed in. We amended our script to include writing a file approximately the size of the app we used earlier into the mountpoint.
+Looking back through the logs, we remembered that, of course, a container rootfs wouldn't just be mounted and then unmounted: code would be
+streamed in. We amended our script to include writing a file (approximately the size of the app we used earlier) into the mountpoint.
 
 And this time we got what we were after: each unmount took up to 10 seconds to complete.
 
 The problem presenting only when data had been written to the mount backed up our theory that this was kernel related, specifically the overlay filesystem, which
-has been built into the mainline since version 3.18. Given that an [overlay filesystem](https://www.kernel.org/doc/Documentation/filesystems/overlayfs.txt) can have up to 3 different inodes for any given file (one at the mount, one in the lower layer
+has been built into the mainline since version 3.18. Given that an [overlay filesystem](https://www.kernel.org/doc/Documentation/filesystems/overlayfs.txt) can have up to 3 different [inodes](http://www.grymoire.com/Unix/Inodes.html) for any given file (one at the mount, one in the lower layer
 and one in the upper layer if the file has been written), we hypothesised that perhaps something in the way inodes were allocated in overlay had changed between 4.4 and 4.15.
 
-To prove this we would have to determine which kernel first saw this problem.
+To prove this we would have to use [our script](/gists/overlay-umount-test) to determine which kernel first saw this problem.
 
-# 4: Narrowing it down...
+# **4: Narrowing It Down...**
 
 We were not quite at the point where we needed to do a proper kernel bisect, fortunately there are a lot of pre-compiled versions [available online](http://kernel.ubuntu.com/~kernel-ppa/mainline/),
 so we were able to jump between those in what I like to call a _lazy bisect_.
@@ -166,7 +171,7 @@ The patch versions in 4.14 run from 1 to 78, so we again started somewhere vague
 
 Our last pre-compiled run was 4.14.59, which showed no performance regression, so now we knew that we were looking for something which went into 4.14.60.
 
-# 5: Mainline crack
+# **5: Mainline Crack**
 
 We were now out of pre-compiled kernel debs so we needed to roll our own.
 
@@ -175,17 +180,16 @@ The first step was to clone down the [ubuntu mainline kernel repository](https:/
 we looked at the git log to see which commits went into our problem version.
 Normally when bisecting something, you would start with a commit in the middle and then work your way up or down until you get to the culprit.
 
-But since simply switching between pro-compiled versions was slow, I hoped we could cheat a bit to get around compiling that much. So we read
+But since simply switching between pre-compiled versions was slow, I hoped we could cheat a bit to get around compiling that much. So we read
 the [messages of the commits](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.14.60/CHANGES) which went into 4.14.60 to look for likely candidates which did things to anything filesystemy, fs/overlay especially.
 
 [One message](https://lore.kernel.org/patchwork/patch/969996/) jumped out at us immediately: `ovl: Sync upper dirty data when syncing overlayfs`.
 The rest of the message also looked good:
-```
-When executing filesystem sync or umount on overlayfs,
-dirty data does not get synced as expected on upper filesystem.
-This patch fixes sync filesystem method to keep data consistency
-for overlayfs.
-```
+
+>When executing filesystem sync or umount on overlayfs,
+>dirty data does not get synced as expected on upper filesystem.
+>This patch fixes sync filesystem method to keep data consistency
+>for overlayfs.
 
 So we decided to focus on this commit first, and go to a regular old bisect from there if it didn't work out.
 
@@ -194,9 +198,9 @@ to do. The unmounts were slow, and it felt like we might get away with it, but w
 
 All ten overlay unmounts go through in under a second.
 
-Woohoo! Our gamble paid off, which is a relief because while it took you perhaps a minute to read the last two sections, that whole nonsense took a week to do.
+Woohoo! Our gamble paid off, which is a relief because while it took you perhaps a minute to read the last two sections, that whole nonsense took us a week.
 
-# 6: sync_filesystem
+# **6: sync_filesystem**
 
 So what happened in that commit?
 Let's take a look at the diff:
@@ -245,7 +249,6 @@ The key thing we care about here is this new line which is treating that upper s
 What is `sync_filesystem` doing? A fair amount, and I'm not gonna paste the code in, you can [check it out here](https://github.com/torvalds/linux/blob/v4.15/fs/sync.c#L24-L69),
 but we are going to look at some choice comments:
 
-For `sync_filesystem`:
 ```
 /*
  * Write out and wait upon all dirty data associated with this
@@ -254,15 +257,44 @@ For `sync_filesystem`:
  */
 ```
 
-And `__sync_filesystem`:
-```
-/*
- * Do the filesystem syncing work. For simple filesystems
- * writeback_inodes_sb(sb) just dirties buffers with inodes so we have to
- * submit IO for these buffers via __sync_blockdev(). This also speeds up the
- * wait == 1 case since in that case write_inode() functions do
- * sync_dirty_buffer() and thus effectively write one block at a time.
- */
-```
+A superblock lock? We may not have known precisely what was going on yet, but we now could perhaps see why _all_ unmounts took such a long time: whichever call gets there
+first is claiming this lock while the others wait their turn.
 
-# 7: The blue line
+We were able to verify this by editing our reproduction script to perform our unmounts in serial rather than in parallel. Sure enough, we saw the first unmount hang
+for ~8 seconds and when it was done the others, with no dirty inodes (meaning new data which has not been written to disk yet) to sync and therefore no need to hang onto that lock, completed in <0.03 seconds.
+
+But what is the first call doing which leads it to hold a lock for, in some extreme cases, nearly ~10 seconds? We can see that `sync_filesystem` in turn calls `__sync_filesystem` which, depending
+on the value of `wait` will do _something_ with those dirty inodes. It may even take both courses of action should the first call not return `< 0`.
+
+We could also see that the more mountpoints there were, or the more data was written to those mounts, the longer the sync took to flush the data: changing either
+the number of mounts created to 20 or the amount of data written in to 20 counts would increase the locked time to ~20 seconds.
+
+At this point, the Garden team pulled back: we had determined the point in the kernel which was slowing down our umounts as well as the commit which had introduced the key change.
+We could tell that our key commit was doing The Right Thing and that the call to `sync_filesystem` was necessary, but much as we would have loved to
+dig deeper ourselves, we are not kernel developers. Therefore we felt this was the correct point for us to return to the problems we _could_ fix, and write this particular one up for those
+who had the skills to find the correct solution.
+
+Fortunately, Pivotal has a close relationship with [Canonical](https://www.canonical.com/), so we were able to open a support ticket and get some expert help.
+
+Our main questions were as follows:
+- Could the modified `ovl_sync_fs` function be modified further to increase efficiency?
+- Were we hitting some sort of threshold which determines when dirty inode data is synced to disk?
+
+One last question, which had been bothering me for a while, answered itself as I began to write this blog: Why umounts?
+Why did we not see this during any other Overlay operation, when there is nothing specific to unmounting about the `ovl_sync_fs` function?
+It turned out this could be seen during other Overlay operations. While writing this, I created a new environment so that I could run my script and
+get some good output. To my complete and utter panic, I saw that the same script I had been reliably running through multiple kernel switches for two weeks
+was no longer producing the expected results. The unmounts were taking less than 0.1 of a second! I was immediately furious that I had wasted so much time being
+completely wrong and honestly thought I would have to start over. But when I stopped flipping my desk over and actually watched the output of my script as it came through,
+I noticed that around the 7th mount, the output paused for a good long moment.
+
+When I adjusted my script to create just 6 mounts, I saw what I had expected to see: slow unmounts. So the inode sync could occur during other Overlay operations, but
+what was different about this new environment which had altered the behaviour? I was now even more curious to hear what Canonical had to say about my second question above.
+
+# **7: The Real Culprit**
+
+_From now on the vast majority of the work and any cool discoveries made are down to Ioanna-Maria Alifieraki of Canonical._
+
+Please check out our open source tracker to see all the nitty gritty of [our investigation](https://www.pivotaltracker.com/n/projects/1158420/stories/160845774) and the one [continued by Canonical](https://www.pivotaltracker.com/n/projects/1158420/stories/162409874).
+
+# **8: The Blue Line**
