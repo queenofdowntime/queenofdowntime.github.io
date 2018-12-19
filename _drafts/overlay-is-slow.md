@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Overlay is Slow(er than before)"
+title: "Investigation: Why is Overlay Slow?"
 ---
 
 ## **TL;DR:**
@@ -14,6 +14,11 @@ Fortunately, because of luck or magic, we may have already solved* the problem l
 
 _\*got around_
 
+&nbsp;
+
+----------------------------------
+
+&nbsp;
 
 ## **The Full Story**
 
@@ -32,7 +37,7 @@ this boils down to is: when application developers push their code to the cloud,
 various components, we will ensure that app code is booted inside a secure and isolated environment. And we will ensure that it
 is booted _quickly_. Speed is, after all, one of the many reasons we love and use containers for this sort of thing.
 
-That is what this graph is showing. Ignore the blue line for now, I will come back to it later because it _is_ important but
+That is what this graph is showing. Ignore the blue line (the top one) for now, I will come back to it later because it _is_ important but
 until then just focus on the purple one, the one showing how suddenly Not Fast we are at booting peoples' apps for them.
 
 Naturally, the first thing we did was find out what had changed in our various repos. A quick `git blame` revealed... my name.
@@ -51,15 +56,14 @@ So what is this graph actually showing? It is not showing an individual applicat
 It is measuring the application developer's whole experience of scaling an already running application from 1 to 10 instances.
 
 The abridged sequence of events is as follows:
-- The asynchronous request from the app developer (via CLI) goes to the Cloud Controller
-- The Cloud Controller forwards the request to the Diego-Cell (the scheduler)
-- The Rep component in the Cell asks Garden-Runc (that's us!) to create 9 new containers
+- The asynchronous scale request from the app developer (via CLI) goes through various components until the relevant bits end up with the scheduler
+- Garden-Runc (that's us!) is asked to create 9 new containers
 - Garden-Runc creates those containers
-- The Executor component streams the application code into the containers
-- The Rep asks Garden-Runc to create a sidecar process for each container
-- Garden-Runc creates those sidecar processes, which check whether the app has booted successfully
-- When all of those processes exit successfully, Rep reports that the app instances are ready to the Cloud Controller
-- The Cloud Controller reports back to the CLI
+- The application code is streamed into the containers
+- Garden-Runc is asked to create a sidecar container for each container
+- Garden-Runc creates those sidecar containers
+- Code is streamed into the sidecar containers (this code runs a healthcheck to see whether the application has booted successfully)
+- When all of those sidecar processes exit successfully, the app is reported back to the cli as healthy
 - The application developer sees they have 10 running instances and is happy
 
 It is the time taken for all of this which is plotted in that graph.
@@ -249,7 +253,7 @@ The key thing we care about here is this new line which is treating that upper s
 What is `sync_filesystem` doing? A fair amount, and I'm not gonna paste the code in, you can [check it out here](https://github.com/torvalds/linux/blob/v4.15/fs/sync.c#L24-L69),
 but we are going to look at some choice comments:
 
-```
+```c
 /*
  * Write out and wait upon all dirty data associated with this
  * superblock.  Filesystem data as well as the underlying block
@@ -293,8 +297,62 @@ what was different about this new environment which had altered the behaviour? I
 
 # **7: The Real Culprit**
 
-_From now on the vast majority of the work and any cool discoveries made are down to Ioanna-Maria Alifieraki of Canonical._
+_The vast majority of the work done for this section and any cool discoveries made are down to Ioanna-Maria Alifieraki of Canonical._
 
-Please check out our open source tracker to see all the nitty gritty of [our investigation](https://www.pivotaltracker.com/n/projects/1158420/stories/160845774) and the one [continued by Canonical](https://www.pivotaltracker.com/n/projects/1158420/stories/162409874).
+The first thing Ioanna-Maria (Jo) told us was pretty much as we expected: the commit we found is doing the right thing, and any work to improve efficiency would have
+to be done elsewhere.
+
+And the reason a solution would have to be found outside Overlay was because this whole thing didn't actually have anything to do with Overlay anyway;
+we were just observing the effects of something else.
+
+TODO: details here
+
+The question now was how we were to work around this behaviour? We could force a `sync` now and then to take the writeback hits in smaller increments, but that was about as
+attractive as re-writing our entire codebase in PHP.
+
+Another option could be to set smaller values for certain tunables in `/proc/sys/vm`, such as `dirty_expire_centisecs` and `dirtytime_expire_seconds`, but
+the effects would be system-wide and generally not positive for others' components.
+
+Fortunately, we already had a trick up our sleeve. Something we had started work on nearly 2 years previously now promised to solve more than simply the problem it was
+created for.
 
 # **8: The Blue Line**
+
+Let's take another look at that graph I showed you at the start of this saga:
+
+![alt text](/assets/images/cfscalegraph "the blue line")
+
+So far I have just been recounting the drama caused us by the purple (top) line, but now we can get to the nice, well-behaved line below it.
+
+That line is tracking the performance of a Cloud Foundry environment almost identical to the one above, but with one key difference: in that deployment we have enabled
+an experimental feature called _OCI Mode_.
+
+The very simple summary I wrote earlier of what happens when a developer pushes/scales their app, reflects the process in Cloud Foundry today. In normal, non-OCI mode,
+a container is created for the application, and then the application code is downloaded from the blobstore and streamed-in. This is done for every
+container/app instance, generating many dirty inodes, which is why we notice such a hit when it comes to a filesystem sync.
+
+But before we knew about the whole inode situation, OCI mode was devised to increase performance of container creates in general, by getting rid of the download and stream
+parts altogether. Well almost; we still have to download once. By combining the app code with the standard, one-size-fits-all, base root filesystem tar, we create a custom rootfs image.
+The resulting image tar is passed to GrootFS (our image plugin) which will return the location of an Overlay mounted hierarchy, ready for Runc to _pivot_root_ to
+as it starts the container. This same custom rootfs image is used for every container, so whether a developer asks for 1 instance or 100, their code is downloaded only
+once, and no new files are written.
+
+Of course, should that app be writing a whole load of files then this doesn't save us much. But in reality the platform sees very few apps which behave like this: the very great
+majority will be writing to their associated database service, if at all.
+
+Sadly the OCI feature has been stuck for sometime as all the components of CF align, so we will have to wait a little longer to find out if, when battle tested on a high volume system,
+it helps us mitigate the slowness introduced by the changes in inode writeback behaviour.
+
+&nbsp;
+
+----------------------------------
+
+&nbsp;
+
+And that's the end of our story! Please check out our open source tracker to see all the nitty gritty of [our investigation](https://www.pivotaltracker.com/n/projects/1158420/stories/160845774)
+and the one [continued by Canonical](https://www.pivotaltracker.com/n/projects/1158420/stories/162409874).
+
+All of our code is open source as well as our [backlog](https://www.pivotaltracker.com/n/projects/1158420)! (Details of OCI mode development can be found by searching for the `oci-phase-one` tag.)
+The Garden team is also on [Cloud Foundry's Open Source Slack](https://slack.cloudfoundry.org/), feel free to stop by for a chat :)
+
+The Garden team intends to share more about other investigations which have thrilled, baffled and haunted us, so stay tuned...
