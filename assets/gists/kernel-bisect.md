@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 ---
 
 ## Bisecting the Kernel

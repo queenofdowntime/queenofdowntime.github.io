@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 ---
 
 ## Overlay umount reproduction script

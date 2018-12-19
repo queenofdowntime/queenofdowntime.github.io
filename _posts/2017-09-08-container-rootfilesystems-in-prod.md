@@ -69,7 +69,7 @@ The droplet should therefore have everything the application needs to run, apart
 This allows us to scale and move applications quickly and even patch security fixes into the rootfs without the need to recompile apps at all, as the
 code can simply be moved to a new container, with a new rootfs.
 
-![alt text](/assets/blog/buildpacks "buildpack application")
+![alt text](/assets/images/buildpacks "buildpack application")
 
 
 ### What does CF need from its containers?
@@ -113,7 +113,7 @@ So the original team did what it could to make it work.
 
 Here is a diagram which gives a general idea for how Warden made CF’s requirements of scalability and user disk quotas work.
 
-![alt text](/assets/blog/aufs "aufs mounts")
+![alt text](/assets/images/aufs "aufs mounts")
 
 The hosts on which application containers ran were deployed with a tarred linux root filesystem. When an app is pushed,
 this rootfs is untarred and its contents serve as the base read-only layer for each container. Warden then mounted each
@@ -183,7 +183,7 @@ since user namespaces came along, every container was run by the same user.
 
 For now, the team managed to do quotas like this:
 
-![alt text](/assets/blog/aufsloops "aufs loopback quota hack")
+![alt text](/assets/images/aufsloops "aufs loopback quota hack")
 
 A formatted sparse file fixed to the requested app quota size was
 attached to a loop device and mounted on top of the AUFS mounted root filesystem. A loop device is really a normal
@@ -240,7 +240,7 @@ in true unprivileged containers. The other useful feature was BTRFS’ snapshott
 
 Here is illustration showing the two different ways your application could now be run in CF using Garden-Runc and GrootFS: 
 
-![alt text](/assets/blog/buildvsdocker "buildpack vs docker apps")
+![alt text](/assets/images/buildvsdocker "buildpack vs docker apps")
 
 When you pull a Docker image it comes in various tarred layers which must be unpacked and reassembled in a specific order.
 Snapshotting provides a simple way to build up each layer upon the previous one without needing to duplicate any of the files.
@@ -267,7 +267,7 @@ OverlayFS has no quota tooling, which is where XFS come in.
 
 Below you can see how we use the two together:
 
-![alt text](/assets/blog/overlayxfs "overlayfs and xfs")
+![alt text](/assets/images/overlayxfs "overlayfs and xfs")
 
 The base of our graph (aka the place where we store all our image layers and keep the container rootfses) is formatted
 with XFS. The loop device it is mounted on is truncated to use just less that the `data` dir which is its base.

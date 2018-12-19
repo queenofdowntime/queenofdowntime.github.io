@@ -19,7 +19,7 @@ _\*got around_
 
 So, one day towards the end of September, we looked up at our team CI/Performance monitor and saw this:
 
-![alt text](/assets/blog/cfscalegraph "one of our monitoring graphs")
+![alt text](/assets/images/cfscalegraph "one of our monitoring graphs")
 
 I bet that, despite having been given limited context and perhaps not even knowing what my team does,
 you looked at that graph and thought "oh damn". The reason you thought this (maybe not exactly this) is because everyone knows that
@@ -149,7 +149,7 @@ The problem presenting only when data had been written to the mount backed up ou
 has been built into the mainline since version 3.18. Given that an [overlay filesystem](https://www.kernel.org/doc/Documentation/filesystems/overlayfs.txt) can have up to 3 different [inodes](http://www.grymoire.com/Unix/Inodes.html) for any given file (one at the mount, one in the lower layer
 and one in the upper layer if the file has been written), we hypothesised that perhaps something in the way inodes were allocated in overlay had changed between 4.4 and 4.15.
 
-To prove this we would have to use [our script](/gists/overlay-umount-test) to determine which kernel first saw this problem.
+To prove this we would have to use [our script](/assets/gists/overlay-umount-test) to determine which kernel first saw this problem.
 
 # **4: Narrowing It Down...**
 
@@ -158,7 +158,7 @@ so we were able to jump between those in what I like to call a _lazy bisect_.
 
 As we were fine on 4.4 and not fine on 4.15, we picked a version sort-of in the middle to start: 4.10.
 
-Switching out a kernel is a [fairly straightforward thing](/gists/switch-kernel). Canonical puts all the [debs online](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10/), so once we downloaded those,
+Switching out a kernel is a [fairly straightforward thing](/assets/gists/switch-kernel). Canonical puts all the [debs online](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10/), so once we downloaded those,
 we could simply install, update grub, reboot and wait. After a little time we were able to ssh back on and run our reproduction script.
 
 Unmounts went through in a flash, so we moved on to 4.13 (sort-of in between 4.10 and 4.15), ditto, then bumped up to 4.14.
@@ -193,7 +193,7 @@ The rest of the message also looked good:
 
 So we decided to focus on this commit first, and go to a regular old bisect from there if it didn't work out.
 
-We [created two custom kernels](/gists/kernel-bisect), one at that commit, and one at the commit before. We tested against the suspect commit first, because that was just the sensible thing
+We [created two custom kernels](/assets/gists/kernel-bisect), one at that commit, and one at the commit before. We tested against the suspect commit first, because that was just the sensible thing
 to do. The unmounts were slow, and it felt like we might get away with it, but we did our best not to get excited. We switched to the commit before, rebooted, and ran our tests.
 
 All ten overlay unmounts go through in under a second.

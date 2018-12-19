@@ -79,7 +79,7 @@ With the pid namespace 2 processes running on the same host but in a different P
 or at least appear to. A process inside the child namespace may think it is PID 1, but really it is mapped to a higher
 PID in its parent namespace and has no knowledge of PIDs outside it’s space.
 
-![alt text](/assets/blog/pidns "pid namespace")
+![alt text](/assets/images/pidns "pid namespace")
 
 #### Mount Namespace
 Process which have been put in a new mount namespace have a different view of which points are mounted.
@@ -87,7 +87,7 @@ When [pivot_root](http://man7.org/linux/man-pages/man2/pivot_root.2.html) is als
 is in the host or parent namespace, it can be made to see its own rootfs. This appears to the namespaced process to be at /,
 when it is probably somewhere else in the parent namespace.
 
-![alt text](/assets/blog/mountns "mnt namespace")
+![alt text](/assets/images/mountns "mnt namespace")
 
 In the example above, I used `df` to show the mountpoints because the output is nicer for slides/images. I would usually
 look at the mount table via `cat /proc/<pid>/mountinfo`.
@@ -124,7 +124,7 @@ The files which come back will be the host rootfs, some boring ubuntu or whateve
 But then the program can run pivot_root with a path to somewhere else,
 and the next time it asks “what’s in /?” it will see a busybox or alpine or whatever filesystem.
 
-![alt text](/assets/blog/pivotroot "pivot root")
+![alt text](/assets/images/pivotroot "pivot root")
 
 #### Layered Filesystem
 How would a container end up with this filesystem? That is where layered filesystems come in.
@@ -145,7 +145,7 @@ Any other lines in your Dockerfile, ADDing application files, RUNning bundle apt
 which will then get layered together by some COW filesystem to give a unified view, the top read-write layer of which becomes
 your container’s rootfs, visible at `/` thanks to `pivot_root`. So layered filesystems allow us to share common things between containers.
 
-![alt text](/assets/blog/layeredfs "layered filesystem")
+![alt text](/assets/images/layeredfs "layered filesystem")
 
 ## What makes a container an unprivileged container?
 So now that we have isolated and controlled our process and its resources, how do we stop that process
@@ -232,7 +232,7 @@ Ed Norton, but in its own namespace, it gets to be cool Brad Pitt.
 I however prefer to use the last scene from Men In Black 1. Earth thinks it is all big an important, but really it is just a tiny
 speck in a galaxy which is some alien's toy.
 
-![alt text](/assets/blog/marble.gif "user ns metaphor")
+![alt text](/assets/images/marble.gif "user ns metaphor")
 
 #### User mappings
 We create this illusion of power by mappings: the user in the container is mapped to a real user in the init namespace, a random one with zero capabilities.
@@ -259,7 +259,7 @@ The extra mappings we choose are, like maximus, least likely to be anything actu
 
 Here is an example of what is is written to a container’s uid_map file. Our id map files are written with 3 values on each line.
 
-![alt text](/assets/blog/mappings "user ns mappings")
+![alt text](/assets/images/mappings "user ns mappings")
 
 The first line here you can see is the root mapping. The first value is the user’s id in the container namespace, 0,
 the second value is the user’s id in the parent namespace, maximus, and the third value is the range of ids we want
@@ -320,7 +320,7 @@ to perform that overlay mount inside the user namespace. This information is in 
 Runc will perform those mounts in order, so all we have to do is ensure that the rootfs is listed first, and runc
 will take care of mounting that rootfs using the caps which it will have inside that namespace.
 
-![alt text](/assets/blog/rootfs "rootfs entry in config.json")
+![alt text](/assets/images/rootfs "rootfs entry in config.json")
 
 For more on the topic of container root filesystems, please check out [my other post/talk](/2017/09/08/container-rootfilesystems-in-prod).
 
@@ -330,7 +330,7 @@ Our mission on Garden is to be the most secure container provider out of the box
 we have accomplished this mission yet, but it is what we very much want to be able to confidently say one day.
 And it’s not looking too bad right now. If you look at this chart we put together recently, you can see that we stack up pretty well against the other big players. 
 
-![alt text](/assets/blog/secchart "security comparison chart")
+![alt text](/assets/images/secchart "security comparison chart")
 
 ## Roadblocks
 And that is where we are at now. But we are still not 100% rootless. There are a couple of things still blocking us.
