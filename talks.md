@@ -1,6 +1,7 @@
 ---
 layout: post
 title: talks
+menu: nav
 ---
 
 <div class="home">

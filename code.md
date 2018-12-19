@@ -1,6 +1,7 @@
 ---
 layout: page
 title: code
+menu: nav
 ---
 
 <div class="home">

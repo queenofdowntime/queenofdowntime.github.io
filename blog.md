@@ -1,6 +1,7 @@
 ---
 layout: page
 title: blog
+menu: nav
 ---
 
 <div class="home">
