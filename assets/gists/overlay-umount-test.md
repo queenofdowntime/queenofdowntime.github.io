@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: gist
 ---
 
 ## Overlay umount reproduction script

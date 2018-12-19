@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: gist
 ---
 
 ## Switching the Kernel

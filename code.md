@@ -1,7 +1,6 @@
 ---
 layout: page
 title: code
-permalink: /code/
 ---
 
 <div class="home">

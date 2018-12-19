@@ -1,7 +1,6 @@
 ---
 layout: page
 title: blog
-permalink: /blog/
 ---
 
 <div class="home">

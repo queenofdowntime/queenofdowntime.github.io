@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: gist
 ---
 
 ## Bisecting the Kernel
@@ -56,6 +56,6 @@ mkdir $HOME/kern/custom-comp/v4.14.59-custom-<sha>
 mv *.deb ../../custom-comp/v4.14.59-custom-<sha>
 ```
 
-To use your newly compiled kernel just perform the same steps as in [Switching the Kernel](/gists/switch-kernel).
+To use your newly compiled kernel just perform the same steps as in [Switching the Kernel](/assets/gists/switch-kernel).
 
 Good luck
