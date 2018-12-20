@@ -51,7 +51,7 @@ I just happened to notice on that fateful day that the VMs we were using to get 
 thought it sensible to switch them over.
 
 This turned out to be a good idea: it would have been very embarrassing to have got all the way to prod (at this time not yet on Xenial) without
-noticing an up to 10s increase in application start times.
+noticing such a dramatic performance regression.
 
 So what is this graph actually showing? It is not showing an individual application create nor is it showing just the container components.
 It is measuring the application developer's whole experience of scaling an already running application from 1 to 10 instances.
@@ -88,13 +88,13 @@ Why are we deleting an image? What is an image? What is a grootfs? What is a "pe
 There is a lot of info in these logs (even though I have edited them for you), so let's break them down.
 
 Guardian and GrootFS are components of [Garden-Runc](https://github.com/cloudfoundry/garden-runc-release). [Guardian](https://github.com/cloudfoundry/guardian) is our container creator. It prepares an [OCI compliant](https://www.opencontainers.org/)
-container spec, and then passes that to [runc](https://github.com/opencontainers/runc), our container runtime, which creates and runs a container based on that spec. Before Guardian calls runc, it asks [GrootFS](https://github.com/cloudfoundry/grootfs)
+container spec, and then passes that to [runc](https://github.com/opencontainers/runc), an open source container runtime, which creates and runs a container based on that spec. Before Guardian calls runc, it asks [GrootFS](https://github.com/cloudfoundry/grootfs)
 (an image plugin) to create a root filesystem for the container. GrootFS imports the filesystem layers and uses OverlayFS to combine them and provide read-write mountpoint which acts as the container's rootfs. The
 path to this rootfs is included in the spec which Guardian passes to runc so that runc can [pivot_root](http://man7.org/linux/man-pages/man2/pivot_root.2.html) to the right place.
 
 (_for more on container root filesystems, see [Container Root Filesystems in Production](/2017/09/08/container-rootfilesystems-in-prod)_)
 
-A Pea is our name for a sidecar container. (Docker groups their sidecars into a Pod, as in a pod of whales. We are Garden so our sidecars are peas... in a pod.
+A Pea is our name for a sidecar container. (Kubernetes groups its sidecars into a Pod, as in a pod of (docker) whales. We are Garden so our sidecars are peas... in a pod.
 Yes, it is hilarious.) Sidecar containers are associated with "full" containers and share some of the resources and configuration of their parent, but can be limited in a different way.
 Crucially, in the context of our problem, they have their own root filesystem. In the case of the logs above, the sidecar (pea) was created to run a process which checks
 whether the primary application container has booted successfully. When the process detects that the app is up and running, it exits, which triggers the teardown
