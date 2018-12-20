@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Investigation: Why is Overlay Slow?"
+title: "Why is OverlayFS slow now?"
 ---
 
 ## **TL;DR:**
 
-_Spoiler alert!!_
+_Spoiler alert, it isn't!!_
 
-Various changes in how the kernel triggers writeback of dirty inodes introduced between v4.4 and v4.15
+But various changes in how the kernel triggers writeback of dirty inodes introduced between v4.4 and v4.15
 led to a marked decrease in performance when it came to handling our Overlay mounted container root filesystems.
 
 Fortunately, because of luck or magic, we may have already solved* the problem long before we knew we had it.
@@ -86,9 +86,9 @@ Why are we deleting an image? What is an image? What is a grootfs? What is a "pe
 
 There is a lot of info in these logs (even though I have edited them for you), so let's break them down.
 
-Guardian and GrootFS are components of [Garden-Runc](https://github.com/cloudfoundry/garden-runc-release). [Guardian](https://github.com/cloudfoundry/guardian) is our container creator. It prepares an OCI compliant container spec, and then passes that to [runc](https://github.com/opencontainers/runc),
-our container runtime, which creates and runs a container based on that spec. Before Guardian calls runc, it asks [GrootFS](https://github.com/cloudfoundry/grootfs) (an image plugin) to create a root filesystem for the
-container. GrootFS imports the filesystem layers and uses OverlayFS to combine them and provide read-write mountpoint which acts as the container's rootfs. The
+Guardian and GrootFS are components of [Garden-Runc](https://github.com/cloudfoundry/garden-runc-release). [Guardian](https://github.com/cloudfoundry/guardian) is our container creator. It prepares an [OCI compliant](https://www.opencontainers.org/)
+container spec, and then passes that to [runc](https://github.com/opencontainers/runc), our container runtime, which creates and runs a container based on that spec. Before Guardian calls runc, it asks [GrootFS](https://github.com/cloudfoundry/grootfs)
+(an image plugin) to create a root filesystem for the container. GrootFS imports the filesystem layers and uses OverlayFS to combine them and provide read-write mountpoint which acts as the container's rootfs. The
 path to this rootfs is included in the spec which Guardian passes to runc so that runc can [pivot_root](http://man7.org/linux/man-pages/man2/pivot_root.2.html) to the right place.
 
 (_for more on container root filesystems, see [Container Root Filesystems in Production](/2017/09/08/container-rootfilesystems-in-prod)_)
@@ -124,7 +124,7 @@ So we added even more log lines to GrootFS and pushed another app.
 
 [The code](https://github.com/cloudfoundry/grootfs/blob/afb5cee1eb3b8c767f6a07c0b36a9f36e666d2dd/store/filesystems/overlayxfs/driver.go#L683-L685) between those two log lines was doing a `syscall.Unmount` and nothing more. 
 
-Now that this was looking like a kernel thing and not a Garden/CF thing, we needed to tighten our testing loop.
+Now that this was looking more like a kernel thing and not a Garden/CF thing, we needed to tighten our testing loop.
 
 # **3: Reliable Reproduction**
 
@@ -273,9 +273,10 @@ on the value of `wait` will do _something_ with those dirty inodes. It may even 
 We could also see that the more mountpoints there were, or the more data was written to those mounts, the longer the sync took to flush the data: changing either
 the number of mounts created to 20 or the amount of data written in to 20 counts would increase the locked time to ~20 seconds.
 
-At this point, the Garden team pulled back: we had determined the point in the kernel which was slowing down our umounts as well as the commit which had introduced the key change.
-We could tell that our key commit was doing The Right Thing and that the call to `sync_filesystem` was necessary, but much as we would have loved to
-dig deeper ourselves, we are not kernel developers. Therefore we felt this was the correct point for us to return to the problems we _could_ fix, and write this particular one up for those
+At this point, the Garden team pulled back: we had determined the point in the kernel which was slowing down our unmounts as well as the commit which had introduced the key change.
+We could tell that our key commit was doing The Right Thing and that the call to `sync_filesystem` was necessary. The fact that the call to `sync_filesystem` _had_ made the difference meant that our
+initial hypothesis was only partly correct: something had changed with regard to inode behaviour, but it wasn't specific to Overlay. Much as we would have loved to
+dig deeper ourselves we are not kernel developers. Therefore we felt this was the correct point for us to return to the problems we _could_ fix, and write this particular one up for those
 who had the skills to find the correct solution.
 
 Fortunately, Pivotal has a close relationship with [Canonical](https://www.canonical.com/), so we were able to open a support ticket and get some expert help.
@@ -284,7 +285,7 @@ Our main questions were as follows:
 - Could the modified `ovl_sync_fs` function be modified further to increase efficiency?
 - Were we hitting some sort of threshold which determines when dirty inode data is synced to disk?
 
-One last question, which had been bothering me for a while, answered itself as I began to write this blog: Why umounts?
+One last question, which had been bothering me for a while, answered itself as I began to write this blog: Why unmounts?
 Why did we not see this during any other Overlay operation, when there is nothing specific to unmounting about the `ovl_sync_fs` function?
 It turned out this could be seen during other Overlay operations. While writing this, I created a new environment so that I could run my script and
 get some good output. To my complete and utter panic, I saw that the same script I had been reliably running through multiple kernel switches for two weeks
@@ -297,7 +298,7 @@ what was different about this new environment which had altered the behaviour? I
 
 # **7: The Real Culprit**
 
-_The vast majority of the work done for this section and any cool discoveries made are down to Ioanna-Maria Alifieraki of Canonical._
+_Big thanks to Ioanna-Maria Alifieraki of Canonical for her work in solving the mystery!_
 
 The first thing Ioanna-Maria (Jo) told us was pretty much as we expected: the commit we found is doing the right thing, and any work to improve efficiency would have
 to be done elsewhere.
@@ -305,15 +306,29 @@ to be done elsewhere.
 And the reason a solution would have to be found outside Overlay was because this whole thing didn't actually have anything to do with Overlay anyway;
 we were just observing the effects of something else.
 
-TODO: details here
+By watching the value of `Writeback` in `/proc/meminfo` while running the test script we provided, Jo noticed that the value remained at around zero KB while files were
+written to each mountpoint, but it shot up when the script came to unmounting the first point. On running the script a second time _without_ cleaning up the directories and
+files created by the script, she observed this time that pages were written back during the `dd` of files instead; each of the `dd`s hung for a visibly perceptible moment while the
+unmounts completed very quickly.
 
-The question now was how we were to work around this behaviour? We could force a `sync` now and then to take the writeback hits in smaller increments, but that was about as
+This was very fun for me since I had not thought to run the test script _without_ cleaning up in between runs! And even more fun than this, was that Jo observed the same writeback behaviour
+(none on the first `dd` to a file, lots on the second) without Overlay involved at all.
+
+Jo went further: on different kernels she observed different writeback behaviour. Between 4.4 and 4.8 no writeback occurs during unmounts, which are all quick, but does during the
+`dd` of files. This is something I had observed during our investigation but lacked the background knowledge to make much of it. The lack of writeback during unmounts in these versions
+makes sense, since that call did not yet exist in the code. Interestingly, from at least 4.13 to 4.14.59 (the commit before our `sync_filesystem` one), no writeback occurred
+during either the `dd` or the unmount: both are very fast. Of course, this probably doesn't mean that no pages would be written ever, but it does indicate that various changes have
+been made through the kernel versions to determine _when_ data is synced.
+
+At the time of writing, the Canonical investigation is still ongoing, but I will update this post with new information as it comes in (yay internet publishing!).
+
+The question now is what Garden can do to work around this behaviour? We could force a `sync` now and then to take the writeback hits in smaller increments, but that was about as
 attractive as re-writing our entire codebase in PHP.
 
-Another option could be to set smaller values for certain tunables in `/proc/sys/vm`, such as `dirty_expire_centisecs` and `dirtytime_expire_seconds`, but
-the effects would be system-wide and generally not positive for others' components.
+Another option could be to set smaller values for certain tunables in `/proc/sys/vm`, such as `dirty_expire_centisecs` and `dirtytime_expire_seconds`, but since
+the effects would be system-wide and generally not positive for others' components, this plan may be a last-resort.
 
-Fortunately, we already had a trick up our sleeve. Something we had started work on nearly 2 years previously now promised to solve more than simply the problem it was
+Fortunately, we already have a trick up our sleeve. Something we started work on nearly 2 years previously now promises to solve more than simply the problem it was
 created for.
 
 # **8: The Blue Line**
@@ -327,21 +342,23 @@ So far I have just been recounting the drama caused us by the purple (top) line,
 That line is tracking the performance of a Cloud Foundry environment almost identical to the one above, but with one key difference: in that deployment we have enabled
 an experimental feature called _OCI Mode_.
 
-The very simple summary I wrote earlier of what happens when a developer pushes/scales their app, reflects the process in Cloud Foundry today. In normal, non-OCI mode,
+The very simple summary I wrote earlier of what happens when a developer pushes/scales their app, reflects the buildpack (non-Docker app) process in Cloud Foundry today. In normal, non-OCI mode,
 a container is created for the application, and then the application code is downloaded from the blobstore and streamed-in. This is done for every
 container/app instance, generating many dirty inodes, which is why we notice such a hit when it comes to a filesystem sync.
 
 But before we knew about the whole inode situation, OCI mode was devised to increase performance of container creates in general, by getting rid of the download and stream
-parts altogether. Well almost; we still have to download once. By combining the app code with the standard, one-size-fits-all, base root filesystem tar, we create a custom rootfs image.
+parts altogether. (Well almost; we still have to download once.) By combining the app code with the standard, one-size-fits-all, base root filesystem tar, we create a custom rootfs image.
 The resulting image tar is passed to GrootFS (our image plugin) which will return the location of an Overlay mounted hierarchy, ready for Runc to _pivot_root_ to
 as it starts the container. This same custom rootfs image is used for every container, so whether a developer asks for 1 instance or 100, their code is downloaded only
 once, and no new files are written.
 
 Of course, should that app be writing a whole load of files then this doesn't save us much. But in reality the platform sees very few apps which behave like this: the very great
-majority will be writing to their associated database service, if at all.
+majority will be writing to their associated database services, if at all.
 
 Sadly the OCI feature has been stuck for sometime as all the components of CF align, so we will have to wait a little longer to find out if, when battle tested on a high volume system,
 it helps us mitigate the slowness introduced by the changes in inode writeback behaviour.
+
+But perhaps the silver lining to all this is that maybe, we might just get the ball rolling again...
 
 &nbsp;
 
@@ -350,7 +367,7 @@ it helps us mitigate the slowness introduced by the changes in inode writeback b
 &nbsp;
 
 And that's the end of our story! Please check out our open source tracker to see all the nitty gritty of [our investigation](https://www.pivotaltracker.com/n/projects/1158420/stories/160845774)
-and the one [continued by Canonical](https://www.pivotaltracker.com/n/projects/1158420/stories/162409874).
+and the one [by Canonical](https://www.pivotaltracker.com/n/projects/1158420/stories/162409874) still underway.
 
 All of our code is open source as well as our [backlog](https://www.pivotaltracker.com/n/projects/1158420)! (Details of OCI mode development can be found by searching for the `oci-phase-one` tag.)
 The Garden team is also on [Cloud Foundry's Open Source Slack](https://slack.cloudfoundry.org/), feel free to stop by for a chat :)
