@@ -1,6 +1,7 @@
 ---
 layout: page
 title: code
+permalink: /code
 menu: nav
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: talks
+permalink: /talks
 menu: nav
 ---
 

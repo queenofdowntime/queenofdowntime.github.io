@@ -1,6 +1,7 @@
 ---
 layout: page
 title: blog
+permalink: /blog
 menu: nav
 ---
 
