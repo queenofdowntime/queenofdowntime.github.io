@@ -90,7 +90,7 @@ There is a lot of info in these logs (even though I have edited them for you), s
 Guardian and GrootFS are components of [Garden-Runc](https://github.com/cloudfoundry/garden-runc-release). [Guardian](https://github.com/cloudfoundry/guardian) is our container creator. It prepares an [OCI compliant](https://www.opencontainers.org/)
 container spec, and then passes that to [runc](https://github.com/opencontainers/runc), an open source container runtime, which creates and runs a container based on that spec. Before Guardian calls runc, it asks [GrootFS](https://github.com/cloudfoundry/grootfs)
 (an image plugin) to create a root filesystem for the container. GrootFS imports the filesystem layers and uses OverlayFS to combine them and provide read-write mountpoint which acts as the container's rootfs. The
-path to this rootfs is included in the spec which Guardian passes to runc so that runc can [pivot_root](http://man7.org/linux/man-pages/man2/pivot_root.2.html) to the right place.
+path to this rootfs is included in the spec which Guardian passes to runc so that runc can [_`pivot_root`_](http://man7.org/linux/man-pages/man2/pivot_root.2.html) to the right place.
 
 (_for more on container root filesystems, see [Container Root Filesystems in Production](/2017/09/08/container-rootfilesystems-in-prod)_)
 
@@ -349,7 +349,7 @@ container/app instance, generating many dirty inodes, which is why we notice suc
 
 But before we knew about the whole inode situation, OCI mode was devised to increase performance of container creates in general, by getting rid of the download and stream
 parts altogether. (Well almost; we still have to download once.) By combining the app code with the standard, one-size-fits-all, base root filesystem tar, we create a custom rootfs image.
-The resulting image tar is passed to GrootFS (our image plugin) which will return the location of an Overlay mounted hierarchy, ready for Runc to _pivot_root_ to
+The resulting image tar is passed to GrootFS (our image plugin) which will return the location of an Overlay mounted hierarchy, ready for Runc to _`pivot_root`_ to
 as it starts the container. This same custom rootfs image is used for every container, so whether a developer asks for 1 instance or 100, their code is downloaded only
 once, and no new files are written.
 
@@ -359,7 +359,9 @@ majority will be writing to their associated database services, if at all.
 Sadly the OCI feature has been stuck for sometime as all the components of CF align, so we will have to wait a little longer to find out if, when battle tested on a high volume system,
 it helps us mitigate the slowness introduced by the changes in inode writeback behaviour.
 
-But perhaps the silver lining to all this is that maybe, we might just get the ball rolling again...
+Until then this means we have to find a way to offset the slowdown in our regular, non-OCI, environments, and we are very grateful to Canonical for their help.
+
+But perhaps the silver lining to all this is that maybe, we might just get the OCI Mode ball rolling again...
 
 &nbsp;
 
