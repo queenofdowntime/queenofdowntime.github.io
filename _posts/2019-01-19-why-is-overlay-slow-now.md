@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Why is OverlayFS slow now?"
-date: "Dec 20, 2018"
 ---
 
 ## **TL;DR:**
@@ -38,7 +37,7 @@ this boils down to is: when application developers push their code to the cloud,
 various components, we will ensure that app code is booted inside a secure and isolated environment. And we will ensure that it
 is booted _quickly_. Speed is, after all, one of the many reasons we love and use containers for this sort of thing.
 
-That is what this graph is showing. Ignore the blue line (the top one) for now, I will come back to it later because it _is_ important but
+That is what this graph is showing. Ignore the blue line (the bottom one) for now, I will come back to it later because it _is_ important but
 until then just focus on the purple one, the one showing how suddenly Not Fast we are at booting peoples' apps for them.
 
 Naturally, the first thing we did was find out what had changed in our various repos. A quick `git blame` revealed... my name.
@@ -138,7 +137,7 @@ Going further, what does GrootFS know? GrootFS has the least awareness of anythi
 Given that a syscall in heart of GrootFS has the most incidental and tenuous connection to a CF application, we were able cut out a great many extraneous parts and just use
 a small bash script to mimic an application scale at the filesystem level:
 
-- serially create 10 overlay mounts
+- serially create 10 overlay mounts*
 - unmount all mounts simultaneously
 
 ... and time each unmount to see some unreasonable slowness.
@@ -156,6 +155,10 @@ and one in the upper layer if the file has been written), we hypothesised that p
 
 To prove this we would have to use [our script](/assets/gists/overlay-umount-test) to determine which kernel first saw this problem.
 
+_\* Application scales would result in parallel container create calls, which technically can mean
+that rootfs mounts are also done in parallel. However, since the unmount behaviour is the same regardless of whether the mounting
+is done simultaneously or not, I decided to stick to serial mounts to avoid unnecessary complexity around timing in the repro script._
+
 # **4: Narrowing It Down...**
 
 We were not quite at the point where we needed to do a proper kernel bisect, fortunately there are a lot of pre-compiled versions [available online](http://kernel.ubuntu.com/~kernel-ppa/mainline/),
@@ -166,7 +169,7 @@ As we were fine on 4.4 and not fine on 4.15, we picked a version sort-of in the 
 Switching out a kernel is a [fairly straightforward thing](/assets/gists/switch-kernel). Canonical puts all the [debs online](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10/), so once we downloaded those,
 we could simply install, update grub, reboot and wait. After a little time we were able to ssh back on and run our reproduction script.
 
-Unmounts went through in a flash, so we moved on to 4.13 (sort-of in between 4.10 and 4.15), ditto, then bumped up to 4.14.
+Unmounts went through in a flash, so we moved on to 4.13 (sort-of in between 4.10 and 4.15), ditto. Then we bumped up to 4.14.
 This time we saw what we were after: slow overlay unmounts.
 
 So 4.14 was the first minor version on which slow overlay unmounts could be observed. Now we kept going to discover which patch brought it in.
@@ -268,7 +271,7 @@ first is claiming this lock while the others wait their turn.
 We were able to verify this by editing our reproduction script to perform our unmounts in serial rather than in parallel. Sure enough, we saw the first unmount hang
 for ~8 seconds and when it was done the others, with no dirty inodes (meaning new data which has not been written to disk yet) to sync and therefore no need to hang onto that lock, completed in <0.03 seconds.
 
-But what is the first call doing which leads it to hold a lock for, in some extreme cases, nearly ~10 seconds? We can see that `sync_filesystem` in turn calls `__sync_filesystem` which, depending
+But what is the first call doing which leads it to hold a lock for, in some extreme cases, nearly 10 seconds? We can see that `sync_filesystem` in turn calls `__sync_filesystem` which, depending
 on the value of `wait` will do _something_ with those dirty inodes. It may even take both courses of action should the first call not return `< 0`.
 
 We could also see that the more mountpoints there were, or the more data was written to those mounts, the longer the sync took to flush the data: changing either
@@ -288,10 +291,12 @@ Our main questions were as follows:
 
 One last question, which had been bothering me for a while, answered itself as I began to write this blog: Why unmounts?
 Why did we not see this during any other Overlay operation, when there is nothing specific to unmounting about the `ovl_sync_fs` function?
-It turned out this could be seen during other Overlay operations. While writing this, I created a new environment so that I could run my script and
+It turned out this could be seen during other Overlay operations.
+
+While writing this, I created a new environment so that I could run my script and
 get some good output. To my complete and utter panic, I saw that the same script I had been reliably running through multiple kernel switches for two weeks
 was no longer producing the expected results. The unmounts were taking less than 0.1 of a second! I was immediately furious that I had wasted so much time being
-completely wrong and honestly thought I would have to start over. But when I stopped flipping my desk over and actually watched the output of my script as it came through,
+completely wrong and honestly thought I would have to start over. But when I stopped flipping my desk and actually watched the output of my script as it came through,
 I noticed that around the 7th mount, the output paused for a good long moment.
 
 When I adjusted my script to create just 6 mounts, I saw what I had expected to see: slow unmounts. So the inode sync could occur during other Overlay operations, but
@@ -376,3 +381,7 @@ All of our code is open source as well as our [backlog](https://www.pivotaltrack
 The Garden team is also on [Cloud Foundry's Open Source Slack](https://slack.cloudfoundry.org/), feel free to stop by for a chat :)
 
 The Garden team intends to share more about other investigations which have thrilled, baffled and haunted us, so stay tuned...
+
+&nbsp;
+
+_Garden Engineers at time of writing: Tom Godkin, Julia Nedialkova, Georgi Sabev, Danail Branekov, Giuseppe Capizzi and Claudia Beresford. Product Manager: Julz Friedman._
