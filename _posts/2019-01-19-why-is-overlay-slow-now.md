@@ -40,7 +40,7 @@ is booted _quickly_. Speed is, after all, one of the many reasons we love and us
 That is what this graph is showing. Ignore the blue line (the bottom one) for now, I will come back to it later because it _is_ important but
 until then just focus on the purple one, the one showing how suddenly Not Fast we are at booting peoples' apps for them.
 
-Naturally, the first thing we did was find out what had changed in our various repos. A quick `git blame` revealed... my name.
+Naturally, the first thing we did was find out what had changed in our various repos. A quick `git log` revealed... my name.
 
 But I hadn't actually done anything to our code. What that commit did was change the default environment our components run on.
 
