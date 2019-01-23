@@ -4,7 +4,7 @@ layout: home
 <div class="home">
 <link rel="stylesheet" href="/css/mine.css">
 <div>
-<div class="home-div-right"><img class="avatar" src="https://avatars0.githubusercontent.com/u/8898786?s=400&v=4"></div>
+<div class="home-div-right"><img class="avatar" src="/assets/images/me.jpg"></div>
 <p>Hi! Welcome to my random collection of things I have done and things I can do. If you are here by accident, it is probably because you hit my
 highly googleable list of skills below. If you are here on purpose, then you know
 that I am a Software / Systems Engineer. You know that I work at <a href="https://pivotal.io/">Pivotal</a> and that I build
