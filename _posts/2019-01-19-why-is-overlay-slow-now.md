@@ -299,14 +299,14 @@ was no longer producing the expected results. The unmounts were taking less than
 completely wrong and honestly thought I would have to start over. But when I stopped flipping my desk and actually watched the output of my script as it came through,
 I noticed that around the 7th mount, the output paused for a good long moment.
 
-When I adjusted my script to create just 6 mounts, I saw what I had expected to see: slow unmounts. So the inode sync could occur during other Overlay operations, but
+When I adjusted my script to create just 6 mounts, I saw what I had expected to see: slow unmounts. So the inode sync could occur during other operations in my repro script, but
 what was different about this new environment which had altered the behaviour? I was now even more curious to hear what Canonical had to say about my second question above.
 
 # **7: The Real Culprit**
 
-_Big thanks to Ioanna-Maria Alifieraki of Canonical for her work in solving the mystery!_
+_Big thanks to Ioanna-Maria Alifieraki of Canonical for her work in solving the mystery! **Most of this section simply paraphrases the highlights of her report.**_
 
-The first thing Ioanna-Maria (Jo) told us was pretty much as we expected: the commit we found is doing the right thing, and any work to improve efficiency would have
+The first thing Ioanna-Maria (Jo) told us was pretty much as we expected: the commit we found is doing The Right Thing, and any work to improve efficiency would have
 to be done elsewhere.
 
 And the reason a solution would have to be found outside Overlay was because this whole thing didn't actually have anything to do with Overlay anyway;
@@ -321,20 +321,41 @@ This was very fun for me since I had not thought to run the test script _without
 (none on the first `dd` to a file, lots on the second) without Overlay involved at all.
 
 Jo went further: on different kernels she observed different writeback behaviour. Between 4.4 and 4.8 no writeback occurs during unmounts, which are all quick, but does during the
-`dd` of files. This is something I had observed during our investigation but lacked the background knowledge to make much of it. The lack of writeback during unmounts in these versions
+`dd` of files. This is something I had observed during my investigation but lacked the background knowledge to make much of it. The lack of writeback during unmounts in these versions
 makes sense, since that call did not yet exist in the code. Interestingly, from at least 4.13 to 4.14.59 (the commit before our `sync_filesystem` one), no writeback occurred
 during either the `dd` or the unmount: both are very fast. Of course, this probably doesn't mean that no pages would be written ever, but it does indicate that various changes have
 been made through the kernel versions to determine _when_ data is synced.
 
-At the time of writing, the Canonical investigation is still ongoing, but I will update this post with new information as it comes in (yay internet publishing!).
+Writeback happens when one of the following cases are met:
+1. Free memory is below a specific threshold; flusher threads (responsible for cleaning dirty pages) write back dirty pages to disk to evict them later and free up memory.
+1. Dirty data is older than a specific threshold.
+1. A userspace process invokes `sync()` or `fsync()`.
 
-The question now is what Garden can do to work around this behaviour? We could force a `sync` now and then to take the writeback hits in smaller increments, but that was about as
+Neither of our environments went anywhere near the free memory threshold, so we can ignore _Case 1_.
+
+In a standard run of my repro script, while technically not running from userspace, the internal mechanisms of an Overlay unmount triggered a data sync: _Case 3_ from our
+list above.
+
+_Case 2_ answers the second question I posed in our ticket, and explains why Jo saw writeback occurring at a different point during the repro script when run twice in quick succession:
+the data was old enough.  The age of dirty data is determined by how far it is past the 30 second default threshold set in `/proc/sys/vm/dirty_expire_centisecs`.
+When flusher threads wake up they check a timestamp, based on the modtime of the inode of the file, and if this timestamp is over the threshold, then the data is written back to disk.
+Interestingly, this timestamp is not reset once the data is synced, which means that once it exceeds the threshold, any further dirtying of data will immediately
+be picked up by the flusher threads, just as Jo observed in her experiments. (She informs me her team are looking into altering this behaviour to make more sense.)
+
+In our separate investigations, we both saw that on kernels earlier than v4.8 writing files took significantly longer than in later versions, and that the subsequent unmounts
+went through very quickly. Jo happened to discover that, for reasons we don't yet know, reading from `/dev/urandom` is far slower in kernels up to 4.7.10. When she edited
+my repro script to read from `/dev/zero` instead, the slow writes disappeared and the slow unmounts returned. With this knowledge we can now understand how, on those earlier kernels,
+the reads slowed the script down just enough for the timestamp to creep above the threshold, triggering a sync a few actions before the unmount, by which time there was not a lot left to do.
+
+&nbsp;
+
+The question now is what Garden can do to work around this behaviour? We could force a `sync` now and then to take the writeback hits in smaller increments, but that is about as
 attractive as re-writing our entire codebase in PHP.
 
-Another option could be to set smaller values for certain tunables in `/proc/sys/vm`, such as `dirty_expire_centisecs` and `dirtytime_expire_seconds`, but since
+Another option could be to set smaller values for those tunables in `/proc/sys/vm`, such as `dirty_expire_centisecs` and `dirty_writeback_centisecs`, but since
 the effects would be system-wide and generally not positive for others' components, this plan may be a last-resort.
 
-Fortunately, we already have a trick up our sleeve. Something we started work on nearly 2 years previously now promises to solve more than simply the problem it was
+Fortunately, we may already have a trick up our sleeve. Something we started work on nearly 2 years previously now promises to solve more than simply the problem it was
 created for.
 
 # **8: The Blue Line**
