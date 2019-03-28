@@ -169,15 +169,19 @@ As we were fine on 4.4 and not fine on 4.15, we picked a version sort-of in the 
 Switching out a kernel is a [fairly straightforward thing](/assets/gists/switch-kernel). Canonical puts all the [debs online](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10/), so once we downloaded those,
 we could simply install, update grub, reboot and wait. After a little time we were able to ssh back on and run our reproduction script.
 
-Unmounts went through in a flash, so we moved on to 4.13 (sort-of in between 4.10 and 4.15), ditto. Then we bumped up to 4.14.
-This time we saw what we were after: slow overlay unmounts.
+Unmounts went through in a flash, so we moved on to 4.13 (sort-of in between 4.10 and 4.15), ditto.
+The last minor version was 4.14 which again showed no sign of slow unmounts.
 
-So 4.14 was the first minor version on which slow overlay unmounts could be observed. Now we kept going to discover which patch brought it in.
+Given that we knew the problem existed in 4.15, we were clearly looking for a patch rather than a minor version.
 
 The patch versions in 4.14 run from 1 to 78, so we again started somewhere vaguely in the middle: 4.14.39. Nothing there. 4.14.58? Nope.
-4.14.68 and we were back in business: slow unmounts. 4.14.63 was also slow, and so was 4.14.60.
 
-Our last pre-compiled run was 4.14.59, which showed no performance regression, so now we knew that we were looking for something which went into 4.14.60.
+Then we tried 4.14.68.
+
+Finally we got what we were after: slow unmounts.
+
+4.14.63 was also slow, and so was 4.14.60. Our last pre-compiled run was 4.14.59, which showed no performance regression,
+so now we knew that we were looking for something which went into 4.14.60.
 
 # **5: Mainline Crack**
 
