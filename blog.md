@@ -7,19 +7,30 @@ menu: nav
 
 <div class="home">
   <ul class="post-list">
-    {%- for post in site.posts -%}
-    <li>
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      <span class="post-meta">{{ post.date | date: date_format }}</span>
-      <h3>
-        <a class="post-link" href="{{ post.url | relative_url }}">
-          {{ post.title | escape }}
+    <li>
+      <span class="post-meta">{{ "2019-03-29" | date: date_format }}</span>
+        <a class="post-link" href="https://www.cloudfoundry.org/blog/an-overlayfs-journey-with-the-garden-team/">
+          {{ "Why is OverlayFS slow now?" | escape }}
         </a>
-      </h3>
-      {%- if site.show_excerpts -%}
-        {{ post.excerpt }}
-      {%- endif -%}
     </li>
-    {%- endfor -%}
+    <li>
+      <span class="post-meta">{{ "2018-09-08" | date: date_format }}</span>
+        <a class="post-link" href="/2018/09/08/the-route-to-rootless-containers.html">
+          {{ "The Route to Rootless Containers" | escape }}
+        </a>
+    </li>
+    <li>
+      <span class="post-meta">{{ "2018-05-09" | date: date_format }}</span>
+        <a class="post-link" href="/2018/05/09/a-day-in-the-life-of-a-cf-engineer.html">
+          {{ "A day in the life of a Cloud Foundry engineer" | escape }}
+        </a>
+    </li>
+    <li>
+      <span class="post-meta">{{ "2017-09-08" | date: date_format }}</span>
+        <a class="post-link" href="/2017/09/08/container-rootfilesystems-in-prod.html">
+          {{ "Container Root Filesystems in Production" | escape }}
+        </a>
+    </li>
   </ul>
 </div>
