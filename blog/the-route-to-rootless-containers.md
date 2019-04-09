@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Route to Rootless Containers"
+date: "Sept 08, 2018"
 ---
 
 This post is a loose transcript of a talk I gave at [Container Camp UK 2018](/placeholder), in

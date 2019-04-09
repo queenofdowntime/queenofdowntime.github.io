@@ -16,19 +16,19 @@ menu: nav
     </li>
     <li>
       <span class="post-meta">{{ "2018-09-08" | date: date_format }}</span>
-        <a class="post-link" href="/2018/09/08/the-route-to-rootless-containers.html">
+        <a class="post-link" href="/blog/the-route-to-rootless-containers.html">
           {{ "The Route to Rootless Containers" | escape }}
         </a>
     </li>
     <li>
       <span class="post-meta">{{ "2018-05-09" | date: date_format }}</span>
-        <a class="post-link" href="/2018/05/09/a-day-in-the-life-of-a-cf-engineer.html">
+        <a class="post-link" href="/blog/a-day-in-the-life-of-a-cf-engineer.html">
           {{ "A day in the life of a Cloud Foundry engineer" | escape }}
         </a>
     </li>
     <li>
       <span class="post-meta">{{ "2017-09-08" | date: date_format }}</span>
-        <a class="post-link" href="/2017/09/08/container-rootfilesystems-in-prod.html">
+        <a class="post-link" href="/blog/container-rootfilesystems-in-prod.html">
           {{ "Container Root Filesystems in Production" | escape }}
         </a>
     </li>

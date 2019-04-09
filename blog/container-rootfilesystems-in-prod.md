@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Container Root Filesystems in Production"
+date: "Sept 08, 2017"
 ---
 
 This post is a loose transcript of a talk a colleague and I gave at [Container Camp UK 2017](https://www.youtube.com/watch?v=lctMC1WNd1U&t=74s), in

@@ -91,7 +91,7 @@ container spec, and then passes that to [runc](https://github.com/opencontainers
 (an image plugin) to create a root filesystem for the container. GrootFS imports the filesystem layers and uses OverlayFS to combine them and provide read-write mountpoint which acts as the container's rootfs. The
 path to this rootfs is included in the spec which Guardian passes to runc so that runc can [_`pivot_root`_](http://man7.org/linux/man-pages/man2/pivot_root.2.html) to the right place.
 
-(_for more on container root filesystems, see [Container Root Filesystems in Production](/2017/09/08/container-rootfilesystems-in-prod)_)
+(_for more on container root filesystems, see [Container Root Filesystems in Production](/blog/container-rootfilesystems-in-prod)_)
 
 A Pea is our name for a sidecar container. (Kubernetes groups its sidecars into a Pod, as in a pod of (docker) whales. We are Garden so our sidecars are peas... in a pod.
 Yes, it is hilarious.) Sidecar containers are associated with "full" containers and share some of the resources and configuration of their parent, but can be limited in a different way.
