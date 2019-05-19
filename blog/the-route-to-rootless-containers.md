@@ -329,9 +329,10 @@ For more on the topic of container root filesystems, please check out [my other 
 So you can see that we don’t rely on just one line of defense; we use everything which is available to us.
 Our mission on Garden is to be the most secure container provider out of the box…. Now I am not saying that
 we have accomplished this mission yet, but it is what we very much want to be able to confidently say one day.
-And it’s not looking too bad right now. If you look at this chart we put together recently, you can see that we stack up pretty well against the other big players. 
+And it’s not looking too bad right now. If you look at this chart, you can see that we stack up pretty well against the other big players. 
 
 ![alt text](/assets/images/secchart "security comparison chart")
+<sup>_Last updated 18/02/19._</sup>
 
 ## Roadblocks
 And that is where we are at now. But we are still not 100% rootless. There are a couple of things still blocking us.
