@@ -38,5 +38,3 @@ Things I don't do:
 <li> Web d3vel0pment (avoid those hits) or design. Making this site was so tedious and I didn't even really do it myself I used <a href="https://jekyllrb.com/">Jekyll</a>. </li>
 </ul>
 </p>
-</div>
-</div>
