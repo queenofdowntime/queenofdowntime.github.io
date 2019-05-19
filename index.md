@@ -26,7 +26,7 @@ Here is that seo-d list of things I do:
 - tdd
 - pair programming
 - conference talking
-- [mentoring](/help) / advice giving
+- [mentoring](/resources) / advice giving
 
 Things I don't do:
 - Web d3vel0pment (avoid those hits) or design. Making this site was so tedious and I didn't even really do it myself I used [Jekyll](https://jekyllrb.com/).

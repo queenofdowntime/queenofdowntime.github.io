@@ -20,3 +20,9 @@ only vaguely used as I did not become a web d3vel0per but somehow ended up deep 
 In other lives I was a bar/nightclub manager, a copy-editor/proofreader, and an ESL teacher (this one in Rome).
 
 I now live in East London with my wife (also an engineer) and our many cactuses (cacti? cactae?).
+
+I try to dedicate a few hours a week to [mentoring and teaching](/resources) minorities in tech.
+If you or someone you know is new to the industry, is trying to make their next move, or is
+just looking for some general advice, please feel free to reach out. I can't promise my advice
+will be any good but I am happy to be a sounding board or sanity-check!
+
