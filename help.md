@@ -27,22 +27,24 @@ hurt to ask).
 <div class="home">
   <ul class="post-list">
     <li>
-        <a class="post-link" href="https://github.com/fouralarmfire/square-one/blob/master/tutorials/new-project-setup.md#how-to-set-up-and-manage-a-new-project">
+        <a class="post-link" href="/resources/tutorials/git">
           {{ "Introduction to Version Control with Git and Github" | escape }}
         </a>
       <span class="post-meta">{{ "A beginners guide to git with some shell thrown in for free!" | escape }}</span>
     </li>
     <li>
-        <a class="post-link" href="https://github.com/fouralarmfire/square-one/blob/master/tutorials/fizzbuzz-tdd.md#intro-to-test-driven-development-fizzbuzz">
+        <span class="post-link">
           {{ "Introduction to Test Driven Development" | escape }}
-        </a>
-      <span class="post-meta">{{ "Code the drinking game 'Fizzbuzz' in either Python, Ruby or NodeJS" | escape }}</span>
+        </span>
+      <span class="post-meta">
+      Code the drinking game 'Fizzbuzz' in either <a href="/resources/tutorials/fizzbuzz-py">Python</a>, <a href="/resources/tutorials/fizzbuzz-rb">Ruby</a> or <a href="/resources/tutorials/fizzbuzz-js">NodeJS</a>.
+      </span>
     </li>
     <li>
         <a class="post-link" href="https://github.com/Callisto13/epacseon">
           {{ "Epacseon" | escape }}
         </a>
-      <span class="post-meta">{{ "Create a text-based adventure game" | escape }}</span>
+      <span class="post-meta">{{ "Create a text-based adventure game." | escape }}</span>
     </li>
   </ul>
 </div>
