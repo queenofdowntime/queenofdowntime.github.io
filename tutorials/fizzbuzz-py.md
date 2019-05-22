@@ -392,7 +392,7 @@ And that's it! You just test-drove your first program.
 But don't stop there; test-driven development is a good habit to get into and the
 majority of (sensible) companies value it very highly. Think back to small programs
 you have written and see if you can do them again through TDD. Or test drive out
-another simple game or calculator ([Leap Year](https://github.com/fouralarmfire/square-one/blob/master/challenges/leap_year.md), maybe?).
+another simple game or calculator ([Leap Year](https://github.com/fouralarmfire/square-one/blob/master/tutorials/leap_year.md), maybe?).
 
 There is a testing framework (often much more than one) for every language,
 so go ahead and play Fizzbuzz again in the one of your choice.
