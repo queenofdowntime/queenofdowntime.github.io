@@ -91,6 +91,9 @@ it easy for others looking at your project to figure out what your code is
 supposed to do (a good way to get contributors); and 4) because of 1 and 2, you have
 complete confidence that your code does what it is supposed to do.
 
+![alt text](http://turnoff.us/image/en/tdd-vs-ftt.png)
+_[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
+
 So lets get going with our first test:
 
 **Steps**:
