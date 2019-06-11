@@ -41,7 +41,7 @@ $ ./fizzbuzz.rb 7
 ## Part 1: Project setup
 
 **Steps**:
-1. Create a new directory and initialise a new git repository:
+1. Create a new directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
 
 	```sh
 	cd ~
@@ -54,7 +54,7 @@ $ ./fizzbuzz.rb 7
 	git commit -m "readme.md"
 	git push -u origin master
 	```
-	For more on how to set up a new project, see [this guide](/resources/tutorials/git).
+
 1. Create 2 subdirectories, `lib` and `spec`, in your project. `lib` you will
 recognise as the normal location of your Ruby code. `spec` is where we are going
 to put our tests.

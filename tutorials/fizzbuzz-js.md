@@ -41,7 +41,7 @@ $ node fizzbuzz.js 7
 ## Part 1: Project setup
 
 **Steps**:
-1. Create a new directory and initialise a new git repository:
+1. Create a new directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
 
 	```sh
 	cd ~
@@ -54,7 +54,7 @@ $ node fizzbuzz.js 7
 	git commit -m "readme.md"
 	git push -u origin master
 	```
-	For more on how to set up a new project, see [this guide](/resources/tutorial/fizzbuzz-js).
+
 1. Initialize your `node_modules`. This is where we store the dependencies we want our program to use. 'Dependencies' are
 	packages (exported and publicly available) written by others which we can use to help build our code. We use `npm` to manage them:
 
