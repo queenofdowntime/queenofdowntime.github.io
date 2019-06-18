@@ -43,12 +43,15 @@ $ python fizzbuzz.py 7
 
 **Steps**:
 1. Create a new directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
+ 
+    _nb: Do not just paste in the `<CAPS IN ARROWS>`, they are placeholders._
 
 	```sh
 	cd ~
-	mkdir -p workspace/fizzbuzz
+	mkdir -p workspace/fizzbuzz # or use another location if you already have a place to store your projects
 	cd workspace/fizzbuzz
 	git init
+	# create your repo online
 	git remote add origin <URL OF YOUR REPO ONLINE>
 	echo "tdd exercise in python" > README.md
 	git add README.md
@@ -82,6 +85,11 @@ _[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
 So lets get going with our first test:
 
 **Steps**:
+
+1. We are going to use a package called [`pytest`](https://docs.pytest.org/en/latest/) to run our
+  tests. To check whether you have `pytest` installed, run `pytest --version`. If that doesn't return
+  "This is pytest version etc", then follow the installation instructions [here](https://docs.pytest.org/en/latest/getting-started.html).
+
 1. Create a new file called `fizzbuzz_test.py`.
 
 1. Open the project in your text editor, and write the following to it:
@@ -105,7 +113,7 @@ So lets get going with our first test:
 	We could have called this function anything, but the descriptive name is for our benefit.
 	The only rule is that it has to start with `test_`.
 
-1. Run the test by typing [`pytest`](https://docs.pytest.org/en/latest/) in the terminal.
+1. Run the test by typing `pytest` in the terminal.
 	This should show you a happy green line with `1 passed in 0.05 seconds` or something.
 	Of course we are not actually testing anything: very little can go wrong with returning nothing.
 
