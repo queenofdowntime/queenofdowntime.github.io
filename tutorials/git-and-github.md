@@ -218,7 +218,7 @@ different order, so don't go copying and pasting the whole lot.
 	gives you.)
 
 	```sh
-	git remote add origin git@github.com:YOUR_USERNAME/hello-world.git
+	git remote add origin https://github.com/YOUR_USERNAME/hello-world.git
 	```
 
 	What is this command doing? The `remote` and `add` are self-evident, given we
@@ -352,7 +352,7 @@ command line and how your computer runs programs.
 	that there is a new untracked file in your project.
 1. Run `git add hello` to track your program.
 1. Run `git status` again to verify that it is being tracked.
-1. Run `git commit -m "new 'hello' program - says Hello World!"` to commit your new
+1. Run `git commit -m "new 'hello' program - says Hello World"` to commit your new
 	project state.
 1. Run `git log` to see your growing project history.
 1. Finally we can run `git push` to send our code to the remote version.
