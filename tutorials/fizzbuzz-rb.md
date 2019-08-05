@@ -41,7 +41,9 @@ $ ./fizzbuzz.rb 7
 ## Part 1: Project setup
 
 **Steps**:
-1. Create a new directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
+
+1. Open Terminal (or iTerm or whatever else you like to get a command prompt) and create a new directory.
+    Then change into that directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
 
 	```sh
 	cd ~
@@ -58,6 +60,7 @@ $ ./fizzbuzz.rb 7
 1. Create 2 subdirectories, `lib` and `spec`, in your project. `lib` you will
 recognise as the normal location of your Ruby code. `spec` is where we are going
 to put our tests.
+
 1. Install `rspec`. [Rspec](http://rspec.info/) is the testing framework we are going to use to write
 [unit tests](https://code.tutsplus.com/articles/the-beginners-guide-to-unit-testing-what-is-unit-testing--wp-25728) for our code.
 Rspec is a `gem` so we need to install it using the `gem` command.
@@ -97,7 +100,9 @@ _[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
 So lets get going with our first test:
 
 **Steps**:
+
 1. Create a new file called `fizzbuzz_spec.rb` in your `spec` directory.
+
 1. Open the project in your text editor, and write the following to it:
 
 	```rb
@@ -135,6 +140,7 @@ So lets get going with our first test:
 			expect(is_divisible_by_three?(3)).to be true
 		end
 	```
+
 1. Run the test: `rspec spec/fizzbuzz_spec.rb`
 	This should fail with something like `undefined method 'is_divisible_by_three?'`.
 	Which makes sense; we haven't defined that method anywhere. Time to write some code.
@@ -142,12 +148,15 @@ So lets get going with our first test:
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz/tree/7dff378e7078094a62c62c78c86f71180d539cd6) at this stage.
 
 ## Part 3: Make it green
+
 Now that we have our first failing test we are going to follow the errors given
 by rspec to make it pass.
 So let's start with the first error we were given: `undefined method 'is_divisible_by_three?'`
 
 **Steps**:
+
 1. Create and open a new file called `fizzbuzz.rb` in your project `lib` directory.
+
 1. Define that function which rspec was complaining about. Don't make it do anything,
 just define it:
 
@@ -155,6 +164,7 @@ just define it:
 	def is_divisible_by_three?(number)
 	end
 	```
+
 1. Save the file and run the test again. Same thing? What are we missing? Does
 our test file know where our code file is? We should probably require it at the
 top of `spec/fizzbuzz_spec.rb`
@@ -165,6 +175,7 @@ top of `spec/fizzbuzz_spec.rb`
 	describe 'Fizzbuzz' do
 	...
 	```
+
 1. Run the test again: `rspec spec/fizzbuzz_spec.rb`.
 	Now we should see something new:
 
@@ -178,8 +189,10 @@ top of `spec/fizzbuzz_spec.rb`
 		  got nil
 	   # ./spec/fizzbuzz_spec.rb:8:in `block (3 levels) in <top (required)>'
 	```
+
 	Our test is expecting our function to return `true` but it is getting `nil`.
 	So lets go give it what it wants.
+
 1. Go back to `lib/fizzbuzz.rb` and make `is_divisible_by_three?` return `true`
 
 	```rb
@@ -187,17 +200,20 @@ top of `spec/fizzbuzz_spec.rb`
 		true
 	end
 	```
+
 1. Run the test again. And we're green! Congrats, you have passed your first test.
 	Let's go wreck it.
 
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz/tree/527fee1aa6a79e490f5cfc8a7deb512729d0195c) at this stage.
 
 ## Part 4: Make it red
+
 Obviously we are not done yet. Hardcoding `true` like that is seen as a Very
 Bad Thing, and also not very useful for our game. So let's write another test
 to force ourselves to do the right thing.
 
 **Steps**:
+
 1. In `spec/fizzbuzz_spec.rb` add a second `it` block under the first. (make sure
 	you stay in the same `context` block.)
 
@@ -206,8 +222,10 @@ to force ourselves to do the right thing.
 		expect(is_divisible_by_three?(1)).to be false
 	end
 	```
+
 1. Run the tests again. Back to red? 2 examples 1 failure? Expected false got true?
 	Excellent. Time for some maths.
+
 1. Back in `lib/fizzbuzz.rb` we need to make our function work out whether the
 	`number` it is being passed as an argument (which right now we are ignoring) is
 	actually divisible by three. To do that we need to use modular arithmetic: if
@@ -218,6 +236,7 @@ to force ourselves to do the right thing.
 		number % 3 == 0
 	end
 	```
+
 1. Now when we run the tests, both should pass. Seeing as we have very little code
 	right now, there is no refactoring to be done so we can go on to writing more tests.
 
@@ -226,6 +245,7 @@ to force ourselves to do the right thing.
 ## Part 5: Around we go again...
 
 **Steps**:
+
 1. In `spec/fizzbuzz_spec.rb`, add another `it` block (again still within the same `context` block)
 	to test whether numbers are divisible by 5:
 
@@ -234,12 +254,17 @@ to force ourselves to do the right thing.
 		expect(is_divisible_by_five?(5)).to be true
 	end
 	```
+
 1. Run the tests. Do you see `undefined method 'is_divisible_by_five?'`?
+
 1. Go define `is_divisible_by_five?` in `lib/fizzbuzz.rb`. (just define, don't make it
 do anything.)
+
 1. Run the tests. `expected true, got nil`? Make your function return `true`.
+
 1. Run the tests. Green again?	Go back to your test file and write the opposing
   `it 'is NOT divisible by 5'` block.
+
 1. Run the tests. `expected false got true`? Fix your code to make it pass.
 
 2 functions in and we are starting to see a pattern here, but let's leave off
@@ -248,6 +273,7 @@ By now you should know the routine, so go ahead and write 2 more tests for a fun
 which knows if a number `is_divisible_by_three_and_five`.
 
 Once you have all 6 tests passing, commit your work and push to github:
+
 ```sh
 git add lib/ spec/
 git commit -m "knows if numbers are divisible by 3, 5 or 3 and 5"
@@ -257,8 +283,10 @@ git push
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz/tree/8470c666acdb86c3149976af47b381615e179b54) at this stage.
 
 ## Part 6: First Refactor
+
 Right now we have three functions which are doing more or less the same thing.
 Let's see if we can [DRY](http://programmer.97things.oreilly.com/wiki/index.php/Don't_Repeat_Yourself) this out a bit.
+
 1. In `lib/fizzbuzz.rb`, edit your code so that the 3 `is_divisible_by_*?` functions
 		are replaced by just 1.
 
@@ -275,10 +303,12 @@ Let's see if we can [DRY](http://programmer.97things.oreilly.com/wiki/index.php/
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz/tree/b021c82b318a52d3286040a4ba1f2a253c934a77) at this stage.
 
 ## Part 7: FizzBuzz says
+
 So now our code can tell us whether a number is divisible by 3, 5 or 3 and 5, but we
 can't really play the game with this.
 
 **Steps**:
+
 1. In `spec/fizzbuzz_spec.rb` define a new `context` block underneath the `end`
   of the old one.
 
@@ -288,6 +318,7 @@ can't really play the game with this.
 		end
 	end
 	```
+
 1. Next, put what you would expect to happen inside your `it` block:
 
 	```rb
@@ -295,8 +326,11 @@ can't really play the game with this.
 	  expect(fizzbuzz_says(3)).to eq 'fizz'
 	end
 	```
+
 1. Run your tests. They should fail in a way which by now should be familiar.
+
 1. Go into `lib/fizzbuzz.rb` and create that function. (just define. don't implement.)
+
 1. Run the tests again and follow the error message, remember to do just enough
 to make them pass.
 
@@ -305,6 +339,7 @@ to make them pass.
 	  "fizz"
 	end
 	```
+
 1. Add the next test to force yourself to write code which actually evaluates something.
 
 	```rb
@@ -312,6 +347,7 @@ to make them pass.
 	  expect(fizzbuzz_says(5)).to eq 'buzz'
 	end
 	```
+
 1. See the test fail, then go back to your code and make your new function process
 the argument it is passed by using our `is_divisible_by` function:
 
@@ -331,7 +367,9 @@ the argument it is passed by using our `is_divisible_by` function:
 
 1. Go back to `spec/fizzbuzz_spec.rb`, and add the test which check that the
   program says "fizzbuzz" when a number is divisible by 3 and 5.
+
 1. Run the tests, watch it fail.
+
 1. Go to your code and make it pass.
 
 	_note: remember to watch your ordering here. Since you are returning immediately_
@@ -413,4 +451,8 @@ whatever new thing I am trying.
 At some point I will be going on to write another, more challenging TDD tutorial
 so watch this space. :)
 
+&nbsp;
+
 <sup>_Mistakes? Corrections? Suggestions?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/tree/master/tutorials/fizzbuzz-rb.md"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>
+
+<sup>_Is something unclear? Do you need help?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/issues/new"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>

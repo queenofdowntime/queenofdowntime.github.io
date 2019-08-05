@@ -41,7 +41,9 @@ $ node fizzbuzz.js 7
 ## Part 1: Project setup
 
 **Steps**:
-1. Create a new directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
+
+1. Open Terminal (or iTerm or whatever else you like to get a command prompt) and create a new directory.
+    Then change into that directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
 
 	```sh
 	cd ~
@@ -61,7 +63,9 @@ $ node fizzbuzz.js 7
 	```sh
 	npm init
 	```
+
 	Hit enter/return to any questions that are asked. You should end up with a file called `package.json` in your repo.
+
 1. Git ignore your `node_modules`. When we install new dependencies they can end up taking up a lot of room in our git repo.
 	This is not a nice thing to push to the cloud as it slows everything down. Since your `package.json` and `package-lock.json` will hold a record of
 	all your dependencies, you don't need to commit the actual folders at all, so it is safe to ignore them.
@@ -70,7 +74,9 @@ $ node fizzbuzz.js 7
 	```sh
 	node_modules/
 	```
+
 	Save and quit.
+
 1. Install `jest`. [Jest](https://jestjs.io/) is the testing framework we are going to use to write
 [unit tests](https://code.tutsplus.com/articles/the-beginners-guide-to-unit-testing-what-is-unit-testing--wp-25728) for our code.
 Jest is a node package so we need to install it using the `npm` command.
@@ -78,6 +84,7 @@ Jest is a node package so we need to install it using the `npm` command.
 	```sh
 	npm install --save-dev jest
 	```
+
 1. Open your `package.json` in a text editor and update it to refer to `jest` as the testing framework.
 	Change the following line from `"test": "echo \"Error: no test specified\" && exit 1"`, to:
 
@@ -88,6 +95,7 @@ Jest is a node package so we need to install it using the `npm` command.
 		},
 	...
 	```
+
 1. Check that everything is installed properly by running `npm run test`.
 	This will fail with something like `No tests found` and lots of red `ERR!` but that is fine. Let's get testing!
 
@@ -125,7 +133,9 @@ _[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
 So lets get going with our first test:
 
 **Steps**:
+
 1. Create a new file called `fizzbuzz.spec.js`.
+
 1. Open the project in your text editor, and write the following to it:
 
 	```js
@@ -136,6 +146,7 @@ So lets get going with our first test:
 	```
 
 	So what have we done here?
+
 	You'll notice that we haven't just written `test('it works')`. TDD is about ensuring
 	that you write your code incrementally by breaking down your problem into small
 	chunks and tackling each one at a time. Right now we are writing a pretty simple
@@ -144,6 +155,7 @@ So lets get going with our first test:
 	TDD is a very useful discipline to learn.
 	
 	So let's read our test.
+
 	The first line is to indicate what you are testing. The jest program recognises
 	everything within this `describe` block as the scope of what you want to test.
 	The bit in the quotes is for your benefit. Jest understands that tests under the
@@ -160,6 +172,7 @@ So lets get going with our first test:
 				expect(fizzbuzz.isDivisibleByThree(3)).toBeTruthy();
 		});
 	```
+
 1. Run the test: `npm run test`
 	This should fail with quite a lot of noise, but if you scroll up a little you should see
 	something like `ReferenceError: fizzbuzz is not defined`.
@@ -168,12 +181,16 @@ So lets get going with our first test:
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz-js/tree/3cc028aa74e64f46a57c7d5daaddcbc4962b1474) at this stage.
 
 ## Part 3: Make it green
+
 Now that we have our first failing test we are going to follow the errors given
 by jest to make it pass.
+
 So let's start with the first error we were given: `ReferenceError: fizzbuzz is not defined`.
 
 **Steps**:
+
 1. Create and open a new file called `fizzbuzz.js`.
+
 1. Define that function which jest was complaining about. Don't make it do anything,
 	just define it:
 
@@ -181,6 +198,7 @@ So let's start with the first error we were given: `ReferenceError: fizzbuzz is 
 	function isDivisibleByThree(number) {
 	}
 	```
+
 1. Save the file and run the test again. Same thing? What are we missing? Does
 	our test file know where our code is or how to find functions?
 	In Node we need to `export` our functions where we define them and then import them where we use them.
@@ -191,11 +209,13 @@ So let's start with the first error we were given: `ReferenceError: fizzbuzz is 
 		isDivisibleByThree: isDivisibleByThree
 	}
 	```
+
 	And at the top of fizzbuzz.spec.js add:
 
 	```js
 	const fizzbuzz = require('./fizzbuzz');
 	```
+
 1. Save the files and run the test again: `npm run test`.
 	Now we should see something new:
 
@@ -209,9 +229,11 @@ So let's start with the first error we were given: `ReferenceError: fizzbuzz is 
 
 			Received: undefined
 	```
+
 	That is admittedly a very unhelpful error (javascript is great at unhelpful errors), but we can make a guess:
 	Our test is expecting our function to return `true` but it is getting `undefined` or nothing.
 	So lets go give it what it wants.
+
 1. Go back to `fizzbuzz.js` and make `isDivisibleByThree` return `true`
 
 	```js
@@ -219,17 +241,20 @@ So let's start with the first error we were given: `ReferenceError: fizzbuzz is 
 		return true;
 	}
 	```
+
 1. Run the test again. And we're green! Congrats, you have passed your first test.
 	Let's go wreck it.
 
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz-js/tree/6794dac377984f3b412321e38c84e0b231acbea8) at this stage.
 
 ## Part 4: Make it red
+
 Obviously we are not done yet. Hardcoding `true` like that is seen as a Very
 Bad Thing, and also not very useful for our game. So let's write another test
 to force ourselves to do the right thing.
 
 **Steps**:
+
 1. In `fizzbuzz.spec.js` add a second `test` block under the first. (Make sure
 	you stay in the same `describe` block.)
 
@@ -238,8 +263,10 @@ to force ourselves to do the right thing.
 				expect(fizzbuzz.isDivisibleByThree(1)).toBeFalsy();
 		});
 	```
+
 1. Run the tests again. Back to red? `1 failed, 1 passed`? `Received: true` when expected falsy?
 	Excellent. Time for some maths.
+
 1. Back in `fizzbuzz.js` we need to make our function work out whether the
 	`number` it is being passed as an argument (which right now we are ignoring) is
 	actually divisible by three. To do that we need to use modular arithmetic: if
@@ -252,6 +279,7 @@ to force ourselves to do the right thing.
 		}
 	}
 	```
+
 1. Now when we run the tests, both should pass. Seeing as we have very little code
 	right now, there is no refactoring to be done so we can go on to writing more tests.
 
@@ -268,6 +296,7 @@ git push
 ## Part 5: Around we go again...
 
 **Steps**:
+
 1. In `fizzbuzz.spec.js`, add another `test` block (again still within the same `describe` block)
 	to test whether numbers are divisible by 5:
 
@@ -276,13 +305,18 @@ git push
 				expect(fizzbuzz.isDivisibleByFive(5)).toBeTruthy();
 		});
 	```
+
 1. Run the tests. Do you see `TypeError: fizzbuzz.isDivisibleByFive is not a function`?
+
 1. Go define `isDivisibleByFive` in `fizzbuzz.js`. (just define, don't make it
 	do anything.) Don't forget to ensure your new function is also listed under `isDivisibleByThree`
 	inside the `modules.exports` brackets. (Hint: you will need to add a comma (`,`) after `isDivisibleByThree`.)
+
 1. Run the tests. `Received: undefined`? Make your function return `true`.
+
 1. Run the tests. Green again?	Go back to your test file and write the opposing
   `test('is NOT divisible by 5'` block.
+
 1. Run the tests. `Received: true`? Fix your code to make it pass.
 
 Once you have all 4 tests passing, commit your work and push to github:
@@ -309,8 +343,10 @@ git push
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz-js/tree/9de1ff9effd8e06181183fa2dec502b291b27230) at this stage.
 
 ## Part 6: First Refactor
+
 Right now we have three functions which are doing more or less the same thing.
 Let's see if we can [DRY](http://programmer.97things.oreilly.com/wiki/index.php/Don't_Repeat_Yourself) this out a bit.
+
 1. In `fizzbuzz.js`, edit your code so that the 3 `isDivisibleBy*` functions
 		are replaced by just 1 function.
 
@@ -321,6 +357,7 @@ Let's see if we can [DRY](http://programmer.97things.oreilly.com/wiki/index.php/
 		}
 	}
 	```
+
 	And the `module.exports` should now just be:
 
 	```js
@@ -344,10 +381,12 @@ git push
 [How your project should look](https://github.com/fouralarmfire/fizzbuzz-js/tree/ab7e80ab589fb6b0f3db05a97d4e4df4165dffac) at this stage.
 
 ## Part 7: FizzBuzz says
+
 So now our code can tell us whether a number is divisible by 3, 5 or 3 and 5, but we
 can't really play the game with this.
 
 **Steps**:
+
 1. In `fizzbuzz.spec.js` define a new `describe` block underneath the `end`
   of the old one.
 
@@ -357,6 +396,7 @@ can't really play the game with this.
 		});
 	});
 	```
+
 1. Next, put what you would expect to happen inside your `test` block:
 
 	```js
@@ -364,10 +404,13 @@ can't really play the game with this.
 			expect(fizzbuzz.says(3)).toEqual('fizz');
 		});
 	```
+
 1. Run your tests. They should fail in a way which by now should be familiar.
+
 1. Go into `fizzbuzz.js` and create that function. (just define. don't implement.)
 	Don't forget to ensure your new function is listed under `isDivisibleBy`
 	inside the `modules.exports` brackets. (Hint: you will need to add a comma (`,`) after`isDivisibleBy`.)
+
 1. Run the tests again and follow the error message, remember to do just enough
 to make them pass:
 
@@ -376,6 +419,7 @@ to make them pass:
 		return "fizz";
 	}
 	```
+
 1. Add the next test to force yourself to write code which actually evaluates something.
 
 	```js
@@ -383,6 +427,7 @@ to make them pass:
 			expect(fizzbuzz.says(5)).toEqual('buzz');
 		});
 	```
+
 1. See the test fail, then go back to your code and make your new function process
 the argument it is passed by using our `isDivisibleBy` function:
 
@@ -399,7 +444,9 @@ the argument it is passed by using our `isDivisibleBy` function:
 
 1. Go back to `fizzbuzz.spec.js`, and add the test which check that the
   program says "fizzbuzz" when a number is divisible by 3 and 5.
+
 1. Run the tests, watch it fail.
+
 1. Go to your code and make it pass.
 
 	_note: remember to watch your ordering here. Since you are returning immediately_
@@ -479,4 +526,8 @@ so watch this space. :)
 
 In the meantime, check out [Exercism](https://exercism.io) for more TDD practice.
 
+&nbsp;
+
 <sup>_Mistakes? Corrections? Suggestions?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/tree/master/tutorials/fizzbuzz-js.md"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>
+
+<sup>_Is something unclear? Do you need help?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/issues/new"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>

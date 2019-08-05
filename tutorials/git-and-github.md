@@ -681,6 +681,10 @@ Huge conflicts can happen with multiple files and many lines, and they can be qu
 to sort out, but by following the pattern above they are manageable. Always remember to read the git message:
 more often than not, git will tell you what to do.
 
+&nbsp;
+
 <sup>_Mistakes? Corrections? Suggestions?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/tree/master/tutorials/git-and-github.md"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>
+
+<sup>_Is something unclear? Do you need help?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/issues/new"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>
 
 ### This tutorial is a work in progress. Refresh regularly for updates.

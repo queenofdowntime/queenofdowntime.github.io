@@ -42,7 +42,8 @@ $ python fizzbuzz.py 7
 ## Part 1: Project setup
 
 **Steps**:
-1. Create a new directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
+1. Open Terminal (or iTerm or whatever else you like to get a command prompt) and create a new directory.
+    Then change into that directory and initialise a new git repository _(New to Git? See [this guide](/resources/tutorials/git).)_:
  
     _nb: Do not just paste in the `<CAPS IN ARROWS>`, they are placeholders._
 
@@ -401,4 +402,8 @@ whatever new thing I am trying.
 At some point I will be going on to write another, more challenging TDD tutorial
 so watch this space. :)
 
+&nbsp;
+
 <sup>_Mistakes? Corrections? Suggestions?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/tree/master/tutorials/fizzbuzz-py.md"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>
+
+<sup>_Is something unclear? Do you need help?_ <a href="https://github.com/queenofdowntime/queenofdowntime.github.io/issues/new"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></sup>
