@@ -34,10 +34,18 @@ hurt to ask).
     </li>
     <li>
         <span class="post-link">
-          {{ "Introduction to Test Driven Development" | escape }}
+          {{ "Introduction to Test-Driven Development" | escape }}
         </span>
       <span class="post-meta">
       Code the drinking game 'Fizzbuzz' in either <a href="/resources/tutorials/fizzbuzz-py">Python</a>, <a href="/resources/tutorials/fizzbuzz-rb">Ruby</a> or <a href="/resources/tutorials/fizzbuzz-js">NodeJS</a>.
+      </span>
+    </li>
+    <li>
+        <a class="post-link" href="/resources/tutorials/crud-py">
+          {{ "More Test-Driven Development in Python" | escape }}
+        </a>
+      <span class="post-meta">
+      Build a CRUD API back-end.
       </span>
     </li>
     <li>
