@@ -815,18 +815,18 @@ The final part of our CRUD api is Delete!
 
 [How your project should look](https://github.com/Callisto13/crud-py/tree/1344972766204de51307eae16a16211af8249fe9) at this stage.
 
-
+&nbsp;
 
 ## Bonus Round!
 
 There are many more things you can do to expand your CRUD api, all with TDD ofc!
 
 - Why not add a `/files/read` endpoint which lists all files currently in the store? (What happens if there are no files?) _[example](https://github.com/Callisto13/crud-py/tree/773b5d52fe6fa03f2b0c8967ac4beff88763b7b7)_
+- What should happen if the `store` directory does not exist? Should the API create one? Should it fail? _[example](https://github.com/Callisto13/crud-py/tree/ece047d7a86b21a0ecf41ddad44a213441a4c10b)_
 - Should the `create` function check that the file does not exist before it over-writes a file?
 - Should the `update` function also check that it is updating an existing files?
 - Likewise the `delete` function: maybe it should fail if it cannot find a file to delete?
 - What if we wanted to create a file inside another folder _inside_ the store? `/files/create/like/this`?
-- What should happen if the `store` directory does not exist? Should the API create one? Should it fail?
 - Are there any other 'edge-cases' (unforeseen ways the webservice could be used) which you could guard against?
 - This tutorial only focuses on the back-end, what if we threw on a front-end? (For that I will probably write a new tutorial, but please give it a try while I procrastinate!)
 
