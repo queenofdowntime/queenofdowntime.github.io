@@ -50,7 +50,7 @@ $ python api.py $HOME/crud-files
 # POST (ie. send) some data the API's 'create' endpoint (ie. URL)
 # and then use the command line to see that the webservice has created
 # a file based on that data
-$ curl -X POST localhost:5000/files/create --data '{"name":"test-file","contents":"hello"}'
+$ curl -X POST localhost:5000/files/create --data '{"name":"test-file","contents":"hello"}' -H "Content-Type: application/json"
 Entry 'test-file' created at '~/crud-files'.
 $ ls $HOME/crud-files/
 test-file
@@ -64,14 +64,14 @@ hello
 # PUT (ie. send) some new data to the API's 'update' endpoint (ie. URL)
 # for that file and then use the command line to see that the webservice
 # has updated the file with the new data
-$ curl -X PUT localhost:5000/files/update/test-file --data '{"contents":"goodbye"}'
+$ curl -X PUT localhost:5000/files/update/test-file --data '{"contents":"goodbye"}' -H "Content-Type: application/json"
 Entry 'test-file' in '~/crud-files' updated.
 $ cat $HOME/crud-files/test-file
 goodbye
 
 # call the API's `delete` endpoint (URL) for that file and then use the
 # command line to verify that the file has been deleted
-$ curl localhost:5000/files/delete/test-file
+$ curl -X DELETE localhost:5000/files/delete/test-file
 Entry 'test-file' deleted from '~/crud-files'.
 $ ls $HOME/crud-files/
 
@@ -823,12 +823,13 @@ There are many more things you can do to expand your CRUD api, all with TDD ofc!
 
 - Why not add a `/files/read` endpoint which lists all files currently in the store? (What happens if there are no files?) _[example](https://github.com/Callisto13/crud-py/tree/773b5d52fe6fa03f2b0c8967ac4beff88763b7b7)_
 - What should happen if the `store` directory does not exist? Should the API create one? Should it fail? _[example](https://github.com/Callisto13/crud-py/tree/ece047d7a86b21a0ecf41ddad44a213441a4c10b)_
-- Should the `create` function check that the file does not exist before it over-writes a file?
-- Should the `update` function also check that it is updating an existing files?
-- Likewise the `delete` function: maybe it should fail if it cannot find a file to delete?
-- What if we wanted to create a file inside another folder _inside_ the store? `/files/create/like/this`?
+- Should the `create` function check that the file does not exist before it over-writes a file? _[example](https://github.com/Callisto13/crud-py/tree/713f904aa3d440b8c52354e35caeacaa7801d391)_
+- Should the `update` function also check that it is updating an existing files? _[example](https://github.com/Callisto13/crud-py/tree/7659fcb864d1c0f701513172e442129cb2c849fe)_
+- Likewise the `delete` function: maybe it should fail if it cannot find a file to delete? _[example](https://github.com/Callisto13/crud-py/tree/fc3236500a44d34bafee0c58bbda42ac86bee717)_
+- What happens when trying to `read` a file which does not exist? _[example](https://github.com/Callisto13/crud-py/tree/b91943b7ba2efbf72b8e0ba1e6c0897e2bc79a66)_
 - Are there any other 'edge-cases' (unforeseen ways the webservice could be used) which you could guard against?
 - This tutorial only focuses on the back-end, what if we threw on a front-end? (For that I will probably write a new tutorial, but please give it a try while I procrastinate!)
+- Finally, don't forget to refactor! _[example](https://github.com/Callisto13/crud-py/tree/2141095ab30a0f09f11817131c1f40bf6f59f92d)_
 
 &nbsp;
 
