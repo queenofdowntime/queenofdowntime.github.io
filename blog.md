@@ -9,6 +9,12 @@ menu: nav
   <ul class="post-list">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     <li>
+      <span class="post-meta">{{ "2019-09-11" | date: date_format }}</span>
+        <a class="post-link" href="/blog/hiking-in-norway.html">
+          {{ "7 Days Hiking Alone From Voss to Dale, Norway" | escape }}
+        </a>
+    </li>
+    <li>
       <span class="post-meta">{{ "2019-03-29" | date: date_format }}</span>
         <a class="post-link" href="https://www.cloudfoundry.org/blog/an-overlayfs-journey-with-the-garden-team/">
           {{ "Why is OverlayFS slow now?" | escape }}
