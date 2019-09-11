@@ -135,8 +135,9 @@ So. Much. Mud.
 Because of all the rain, the ground was completely sodden, which added another layer of "things to pay attention to" when walking.
 
 But not just any mud. There were patches which _looked_ like a regular patch of squelchy dirt, but then when you stepped on them _your
-leg vanished up to your knee_. I took to calling these pits "shoe-stealers", because had I not been wearing gaiters I really feel that I
-would have completely lost them.
+leg vanished up to your knee_. I took to calling these pits "shoe-stealers", because had I not been wearing gaiters I really feel that my
+foot would have come back bare.
+
 
 The afternoon took a slightly annoying turn. At one point the trail comes out over lake Blåkollvatnet, which looks adorable from a height
 because it is surrounded by all these lovely cabins which have no road access whatsoever. I can only assume the occupants get their
@@ -150,7 +151,7 @@ was getting on in the day and I could absolutely not get stuck here because ther
 there were _so many sheep_. Don't get me wrong, sheep are lovely, but in Norway they all wear bells (presumably for ease of location when they
 are all allowed to run loose over the mountains) and they are. So. Loud.
 
-At this point I also began to suspect that I had come to a section of trail maintained by a different person than whoever had marked the Voss/Torfinsheim
+At this point I also began to suspect that I had come to a section of trail maintained by a different person than whoever had marked the Voss/Torfinnsheim
 bit. Where earlier I would have had to really try hard to get lost, now I often found myself standing next to each marker, peering about for a good
 5 minutes for the next one. Previously the marks had been up to the size of a car door: impossible not to see. Now they ranged from about an iPhone
 to a paperback book. At several points I had to make a gut call and head up a vertical slope, getting ready to curse the good people at the DNT
@@ -169,7 +170,7 @@ Fortunately I managed to find a pretty well drained spot, which didn't look like
 
 I called it quits after a very satisfying 16.7km, and got inside just before the heavens opened again.
 
-I realised I hadn't seen another person since leave Gjelle on Day 1.
+I realised I hadn't seen another person since leaving Gjelle on Day 1.
 
 [_Map for Day 3._](/assets/images/norway/maps/maps#torfinnsheim---second-camp-167-km)
 
@@ -184,7 +185,7 @@ be nocturnal. The bells also seemed to ring at a frequency which my earplugs did
 
 Since I was up anyway, I cracked on early and proceeded on my most challenging day so far. I'm sure my extreme tiredness contributed a lot,
 but I can only describe the terrain as 'lethal'. This time, in addition to steep height losses and gains which _felt_ vertical, there were
-sections which genuinely _were_ vertical. At times one trail marker would appear at the edge of a gorge with the next on its other side, sheer
+sections which genuinely _were_ vertical. In some places one trail marker would appear at the edge of a gorge with the next on its other side, sheer
 rock faces the only way up or down. This is the sort of thing I find great fun when I am not carrying a large backpack which completely alters
 my centre of gravity. It was also raining still.
 
@@ -196,7 +197,7 @@ onto the rocks below.
 I think the worst that would have happened would have been a tedious trip-ending injury, but it highlighted an important factor when attempting
 routes the DNT classes as 'Black/Expert' or even 'Red/Challenging': physical fitness is not enough, hikers need to be mentally alert _at all times_. Aside from moments
 like this, I had come across several sections of trail which were no wider than a gymnast's balance-beam, littered with slick rocks and mud,
-and a very long drop below.
+with a very long drop below.
 
 Despite all this, I managed to crack out a surprising 14.6 km, which I mainly accomplished by promising myself that I would reward myself with
 spending the night in Gullhorgabu cabin.
@@ -213,7 +214,7 @@ With the promise of better weather in the morning, I slept very soundly.
 
 ## Day 5: Gullhorgabu to Lake Herfangsvatnet
 
-The following morning was indeed as promised, and again I bounded off with infinite energy.
+The following morning was indeed as forecast, and again I bounded off with infinite energy.
 
 ![alt text](/assets/images/norway/gullhorgabu.jpg "gullhorgabu")
 _Leaving Gullhorgabu_
@@ -225,7 +226,7 @@ from 847 to 1100 metres, and the trail then coasts along the top of this stunnin
 
 ![alt text](/assets/images/norway/plateau.jpg "gullhorgabu-høgabu plateau")
 
-I was so amazed by everything I could see, that despite some steep clambering over rocks, I was not tired in the least: I could have
+I was so amazed by everything I could see that, despite some steep clambering over rocks, I was not tired in the least: I could have
 wandered around up there forever.
 
 Then the mist rolled in. Even though I lost the amazing view, indeed I could barely see 20 feet in front of me and really struggled with
@@ -315,7 +316,7 @@ It was really very, very steep and I could not imagine coming the other way. The
 and honestly I did most of it on my arse. Here and there chains, ropes and wooden ladders had been laid, but they did little to help. After losing 660 metres of
 height in under 2km, my knees were very shaky by the end.
 
-At the bottom there was a sign which claimed from Dale to Høgabu was a 7 hour walk which made me laugh with despair.
+At the bottom there was a sign which claimed from Dale to Høgabu was a 7 hour walk which made me giggle.
 
 And that was it. I was done, and slowly walked towards the station, not staring at my feet for the first time in days.
 
