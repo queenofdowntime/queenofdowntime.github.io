@@ -6,7 +6,7 @@ menu: nav
 ---
 
 I like reading and cooking and diy and tattoos and martial arts and trekking
-(not the kind of trekking where you dress up and maybe nimoy is there, but the kind
+(not the kind of trekking where you dress up and maybe Nimoy is there, but the kind
 of trekking where it is just you in a remote mountain range with a tent and 2 weeks
 of rations). On my days off I will either aim to read and finish a book or
 I will look for something in my home which needs the sort of fixing that can only
@@ -19,6 +19,8 @@ then went to a web-dev bootcamp which I only vaguely used as I did not become a 
 In other lives I was a bar/nightclub manager, a copy-editor/proofreader, and an ESL teacher (this one in Rome).
 
 I now live in East London with my wife (also an engineer) and our many cactuses (cacti? cactae?).
+
+My pronouns are she/her.
 
 I try to dedicate a few hours a week to [mentoring and teaching](/resources) minorities in tech.
 If you or someone you know is new to the industry, is trying to make their next move, or is

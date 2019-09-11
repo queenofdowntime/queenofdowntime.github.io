@@ -11,7 +11,7 @@ menu: nav
     <li>
       <span class="post-meta">{{ "2019-09-11" | date: date_format }}</span>
         <a class="post-link" href="/blog/hiking-in-norway.html">
-          {{ "7 Days Hiking Alone From Voss to Dale, Norway" | escape }}
+          {{ "7 Days Hiking Alone from Voss to Dale, Norway" | escape }}
         </a>
     </li>
     <li>

@@ -506,7 +506,7 @@ Let's do this one bit at a time.
 
     Time for another fixture!
 
-    In `api_test.py` past the following snippet somewhere in our fixtures area, between `setup` and `start_server` is fine:
+    In `api_test.py` paste the following snippet somewhere in our fixtures area, between `setup` and `start_server` is fine:
 
     ```py
     @pytest.fixture()
@@ -537,7 +537,6 @@ Let's do this one bit at a time.
     our new temp directory to the `class` so that all tests can access it:
 
     ```py
-    ...
     def setup(self, tmp_dir):
          self.url = 'http://127.0.0.1:5000'
          self.tmp = tmp_dir
@@ -702,9 +701,11 @@ The next endpoint we need is one which can update an already existing file in th
     At the top of `test_put_update` create a new file:
 
     ```py
+    def test_put_update(self):
          f = open(self.tmp+'/test-file', "w")
          f.write('boring old contents')
          f.close()
+	 ...
     ```
 
     Then create a variable for the new contents and use it in the `data` for the request, replacing what you pasted in earlier:
@@ -720,6 +721,7 @@ The next endpoint we need is one which can update an already existing file in th
     To do this we have to read that file again:
 
     ```py
+	 ...
          file_object = open(self.tmp+"/test-file", "r")
          read_content = file_object.read()
          file_object.close()
@@ -779,7 +781,7 @@ The final part of our CRUD api is Delete!
 
     The test name is a little weird, I will grant you. But I settled on this naming convention at the beginning so we are stuck with it.
 
-    We are using a new module here, so don't forget to `import os.path` at the top of `api_test.py`.
+    We are using a new module here, so don't forget to `import os` at the top of `api_test.py`.
 
 1. This fails with the expected `404`, so we can return to `api.py` and make it go a little further:
 
