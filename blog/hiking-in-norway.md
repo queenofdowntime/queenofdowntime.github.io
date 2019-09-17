@@ -134,10 +134,9 @@ So. Much. Mud.
 
 Because of all the rain, the ground was completely sodden, which added another layer of "things to pay attention to" when walking.
 
-But not just any mud. There were patches which _looked_ like a regular patch of squelchy dirt, but then when you stepped on them _your
+But not just any mud. There were patches which _looked_ like a regular bit of squelchy dirt, but then when you stepped on them _your
 leg vanished up to your knee_. I took to calling these pits "shoe-stealers", because had I not been wearing gaiters I really feel that my
 foot would have come back bare.
-
 
 The afternoon took a slightly annoying turn. At one point the trail comes out over lake Blåkollvatnet, which looks adorable from a height
 because it is surrounded by all these lovely cabins which have no road access whatsoever. I can only assume the occupants get their
@@ -164,9 +163,10 @@ well, lost.
 Actually that's not really true: I would have lost time faffing about with a map and compass, the Etrex is just faster. And works in fog.
 
 Finally I began to come out of the treeline again, but I became increasingly concerned that by about 5pm, I had seen nothing but water-saturated marshland
-for the last 3-4 kilometres. The map seemed to promise more of the same, and I could see dark, angry clouds coming my way.
+for the last 3-4 kilometres. I wasn't far off Vending cabin, and I didn't really want to stay there, but the map seemed to indicate the same sort
+of land in a 5km radius around the hut, and I could see dark, angry clouds coming my way.
 
-Fortunately I managed to find a pretty well drained spot, which didn't look like it threatened to turn into a bog while I slept.
+Fortunately I managed to find a pretty well drained spot, not too far but nicely hidden from the trail, which didn't look like it threatened to turn into a bog while I slept.
 
 I called it quits after a very satisfying 16.7km, and got inside just before the heavens opened again.
 
@@ -183,27 +183,33 @@ I did not sleep at all that night. Not a wink.
 Do you remember those sheep and their bells? Well it turns out that I had set up close to a little herd of them, and these buggers appeared to
 be nocturnal. The bells also seemed to ring at a frequency which my earplugs did nothing to muffle.
 
-Since I was up anyway, I cracked on early and proceeded on my most challenging day so far. I'm sure my extreme tiredness contributed a lot,
-but I can only describe the terrain as 'lethal'. This time, in addition to steep height losses and gains which _felt_ vertical, there were
+Since I was up anyway, I smashed on early and proceeded on my most challenging day of the trip. I'm sure my extreme tiredness contributed a lot (I felt really quite sick),
+but I can only describe the terrain as 'fiendish'. In addition to steep height losses and gains which _felt_ vertical, there were
 sections which genuinely _were_ vertical. In some places one trail marker would appear at the edge of a gorge with the next on its other side, sheer
-rock faces the only way up or down. This is the sort of thing I find great fun when I am not carrying a large backpack which completely alters
-my centre of gravity. It was also raining still.
+rock faces the only way up or down. Scrambling is the sort of thing I normally find great fun: barely feeling 30% and with a large backpack which completely alters
+my centre of gravity added an element of 'interesting'. It was also raining still.
 
-At one point I had lowered myself down onto a narrow ledge above a 15ft drop, only to immediately realise that I had forgotten
-to factor my backpack into the space. Knowing that I was seconds away from the weight of it pushing me off, I wedged the fingertips of one hand into
-a crevice to hold myself in place, while unbuckling my pack and then shifting it off in infinitesimally small shrugs until I was able to let it drop
-onto the rocks below.
+At one point (after I had inadvertently wandered off-trail in a spot where markers were very sparse, again) I had lowered myself down onto a narrow ledge above a 15ft drop,
+only to immediately realise that out of dumb doziness I had forgotten to factor my backpack into the space. I teetered inexorably on my toes, knowing that I was seconds
+away from something in my body/the loose slate giving way and the weight of the pack pushing me off. I wedged the fingertips of one hand into a crevice to hold myself
+in place, while unbuckling my pack with the other and then shifting it off in infinitesimally small shrugs until I was able to let it drop onto the rocks below.
+
+The whole event took less than 10 seconds, and I have been in enough situations where I have needed to save myself that I could keep my cool and barely
+register the risk beyond what I needed to do to get out of it. After I had climbed down to join my pack, strapped it on and taken a few steps forwards,
+I turned back to look up at where I had been. It looked even more treacherous at that angle. But I had no time to freak out so I laughed, muttered an "idiot" to myself,
+and started the mirror climb up the other side of the crevasse.
 
 I think the worst that would have happened would have been a tedious trip-ending injury, but it highlighted an important factor when attempting
-routes the DNT classes as 'Black/Expert' or even 'Red/Challenging': physical fitness is not enough, hikers need to be mentally alert _at all times_. Aside from moments
-like this, I had come across several sections of trail which were no wider than a gymnast's balance-beam, littered with slick rocks and mud,
-with a very long drop below.
+routes the DNT classes as 'Black/Expert' or even 'Red/Challenging' (even though I was technically off-trail at that point): physical fitness is not enough,
+hikers need to be mentally alert _at all times_. Aside from moments like this, I had come across similar sections on-trail as well as several long sections which were no
+wider than a gymnast's balance-beam, littered with slick rocks and mud, with a very long drop below.
 
-Despite all this, I managed to crack out a surprising 14.6 km, which I mainly accomplished by promising myself that I would reward myself with
-spending the night in Gullhorgabu cabin.
+Walking in bad weather without sleep on challenging terrain may not have been sensible, is the general lesson of this tale.
+
+Despite all this, I managed to crack out a surprising 14.6 km, which I mainly accomplished by promising myself the reward of spending the night in Gullhorgabu cabin.
 
 I made it there by around 5pm, but this time I was not alone. Gullhorgabu is at the intersection of 4 different trails, and it was a Friday,
-so we had a full house, including a family with 2 small children under 8 who came bounding over the rocks in their onesies, compasses swinging
+so we had a full house, including a family with 2 small children under 8 who came tumbling over the rocks in their snow onesies, compasses swinging
 at their necks.
 
 With the promise of better weather in the morning, I slept very soundly.
@@ -308,7 +314,7 @@ Naturally I am now desperate to have my own mountain cabin.
 ## Day 7: Dalestølen to Dale
 
 My last day I woke up at the crack of dawn to make my final descent. The route should take approximately 1 to 1 and a half hours, but I wanted to give
-myself a good amount of time since I knew the going would be tough and I would not want to injure myself doing it in a rush.
+myself a good amount of time since I knew the going would be tough and I did not want to injure myself doing it in a rush.
 
 The sun was still rising behind the mountains as I left, but it was soon hidden from view as I sank into the treeline.
 
@@ -316,11 +322,11 @@ It was really very, very steep and I could not imagine coming the other way. The
 and honestly I did most of it on my arse. Here and there chains, ropes and wooden ladders had been laid, but they did little to help. After losing 660 metres of
 height in under 2km, my knees were very shaky by the end.
 
-At the bottom there was a sign which claimed from Dale to Høgabu was a 7 hour walk which made me giggle.
+At the bottom there was a sign which claimed from Dale to Høgabu was a 7 hour walk which made me giggle; I guess I could imagine doing that without a full pack.
 
 And that was it. I was done, and slowly walked towards the station, not staring at my feet for the first time in days.
 
-Voss felt a very long time ago, and I was very sorry that it was all over, head-to-toe vicious bruising and nerve damage in one leg and one arm non-withstanding.
+Voss felt a very long time ago, and I was sorry that it was all over, vicious head-to-toe bruising and nerve damage in one leg and one arm non-withstanding.
 
 There is really nowhere like Norway for the serious hiker and I am very proud of what I accomplished.
 
@@ -387,7 +393,8 @@ However, there is usually always room, so it is not the end of the world if you 
 
 The benefit of hut-to-hut hiking is of course not needing to carry all that extra weight (just a sleeping bag liner and some layers), not having to learn camping skills, and not having to tolerate constantly wet boots.
 
-The benefit of camping is that you can drop wherever you want, whenever you want. And thanks to Norway's right to roam there is no need to worry about trespassing.
+The benefit of camping is that you can drop wherever you want, whenever you want. And thanks to Norway's principle of _allemannsretten_, the thousand year old right to roam,
+there is no need to worry about trespassing, so long as you follow the basic [rules of camping etiquette and Leave No Trace](https://lnt.org/why/7-principles/).
 
 To see what I took with me, check out my [LighterPack gearlist](https://lighterpack.com/r/66oidb). If you have any questions about Norway or hiking in general, please don't hesitate to reach out, email at the bottom.
 
