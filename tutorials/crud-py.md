@@ -389,7 +389,7 @@ Let's do this one bit at a time.
 
     Lastly after we make our request, we want to check that the create was a success, so we match the response `status_code`
     against what we want it to be. By checking a handy site like [HTTPStatusDogs](https://httpstatusdogs.com/), we know that
-    successfully creates usually return `201` exit codes.
+    successful creates usually return `201` exit codes.
 
 1. Run your tests: `pipenv run pytest`.
 
