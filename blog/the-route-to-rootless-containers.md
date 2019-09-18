@@ -1,5 +1,6 @@
 ---
 layout: post
+permalink: /blog/the-route-to-rootless-containers
 title: "The Route to Rootless Containers"
 date: "Sept 08, 2018"
 ---

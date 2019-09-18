@@ -1,5 +1,6 @@
 ---
 layout: post
+permalink: /blog/a-day-in-the-life-of-a-cf-engineer
 title: "A Day in the Life of a Cloud Foundry Engineer"
 date: "May 09, 2018"
 ---

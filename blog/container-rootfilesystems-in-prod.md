@@ -1,5 +1,6 @@
 ---
 layout: post
+permalink: /blog/container-rootfilesystems-in-prod
 title: "Container Root Filesystems in Production"
 date: "Sept 08, 2017"
 ---

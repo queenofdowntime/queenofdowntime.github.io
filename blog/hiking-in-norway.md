@@ -1,5 +1,6 @@
 ---
 layout: post
+permalink: /blog/hiking-in-norway
 title: "7 Days Hiking Alone from Voss to Dale, Norway"
 date: "September 11, 2019"
 ---
