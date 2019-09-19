@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://queenofdowntime.com/</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/about</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/blog</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/talks</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/resources</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/blog/hiking-in-norway</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/blog/the-route-to-rootless-containers</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/blog/a-day-in-the-life-of-a-cf-engineer</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/blog/container-rootfilesystems-in-prod</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/resources/tutorials/git</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/resources/tutorials/fizzbuzz-py</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/resources/tutorials/fizzbuzz-rb</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/resources/tutorials/fizzbuzz-js</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/resources/tutorials/crud-py</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://queenofdowntime.com/blog/hiking-in-norway/maps</loc>
+  <lastmod>2019-09-19T10:43:54+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>
