@@ -18,4 +18,7 @@
     gtag('config', 'UA-136100283-2');
   </script>
   {%- endif -%}
+  {%- if page.name == "placeholder.md" -%}
+  <meta name="robots" content="noindex">
+  {%- endif -%}
 </head>
