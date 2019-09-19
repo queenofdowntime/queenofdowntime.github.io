@@ -1,5 +1,6 @@
 ---
 layout: gist
+permalink: /blog/hiking-in-norway/maps
 ---
 
 These maps were generated using Garmin BaseCamp, the software which accompanies the Etrex 30x GPS tracker I was using.

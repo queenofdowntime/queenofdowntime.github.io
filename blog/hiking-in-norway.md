@@ -62,7 +62,7 @@ the terrain was only going to get harder.
 
 ![alt text](/assets/images/norway/first-camp.jpg "first camp")
 
-[_Map for Day 1._](/assets/images/norway/maps/maps#voss---first-camp-142-km)
+[_Map for Day 1._](/blog/hiking-in-norway/maps#voss---first-camp-142-km)
 
 &nbsp;
 
@@ -109,7 +109,7 @@ provided, so everyone can leave the place as they found it for the next guest.
 I am sorry that I didn't think to take a picture, because the cabins really are lovely. I hung everything up to dry near the stove, and had the
 entire place to myself all night!
 
-[_Map for Day 2._](/assets/images/norway/maps/maps#first-camp---torfinnsheim-86-km)
+[_Map for Day 2._](/blog/hiking-in-norway/maps#first-camp---torfinnsheim-86-km)
 
 &nbsp;
 
@@ -173,7 +173,7 @@ I called it quits after a very satisfying 16.7km, and got inside just before the
 
 I realised I hadn't seen another person since leaving Gjelle on Day 1.
 
-[_Map for Day 3._](/assets/images/norway/maps/maps#torfinnsheim---second-camp-167-km)
+[_Map for Day 3._](/blog/hiking-in-norway/maps#torfinnsheim---second-camp-167-km)
 
 &nbsp;
 
@@ -215,7 +215,7 @@ at their necks.
 
 With the promise of better weather in the morning, I slept very soundly.
 
-[_Map for Day 4._](/assets/images/norway/maps/maps#second-camp---gullhorgabu-146-km)
+[_Map for Day 4._](/blog/hiking-in-norway/maps#second-camp---gullhorgabu-146-km)
 
 &nbsp;
 
@@ -264,7 +264,7 @@ I had done about 8km by then and was in such a good mood that I didn't want to r
 
 I slept exceptionally well and woke up sad that it was my final full day.
 
-[_Map for Day 5._](/assets/images/norway/maps/maps#gullhorgabu---third-camp-95-km)
+[_Map for Day 5._](/blog/hiking-in-norway/maps#gullhorgabu---third-camp-95-km)
 
 &nbsp;
 
@@ -308,7 +308,7 @@ From their cabin they can see down to their house in Dale, and from their house 
 
 Naturally I am now desperate to have my own mountain cabin.
 
-[_Map for Day 6._](/assets/images/norway/maps/maps#third-camp---dalestølen-97-km)
+[_Map for Day 6._](/blog/hiking-in-norway/maps#third-camp---dalestølen-97-km)
 
 &nbsp;
 
@@ -333,7 +333,7 @@ There is really nowhere like Norway for the serious hiker and I am very proud of
 
 In Bergen airport I ordered myself a massive burger.
 
-[_Map for Day 7._](/assets/images/norway/maps/maps#dalestølen---dale-station-31-km)
+[_Map for Day 7._](/blog/hiking-in-norway/maps#dalestølen---dale-station-31-km)
 
 &nbsp;
 
