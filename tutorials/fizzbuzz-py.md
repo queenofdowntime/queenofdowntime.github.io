@@ -399,8 +399,9 @@ In fact, small exercises like Fizzbuzz are a great way to get to grips with a ne
 and its testing framework; it's my personal goto for the first thing I write in
 whatever new thing I am trying.
 
-At some point I will be going on to write another, more challenging TDD tutorial
-so watch this space. :)
+&nbsp;
+
+**Ready for more TDD in Python? Check out my next tutorial on how to [test-drive a CRUD API](/resources/tutorials/crud-py)!**
 
 &nbsp;
 
