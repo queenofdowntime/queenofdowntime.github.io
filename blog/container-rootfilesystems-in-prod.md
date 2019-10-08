@@ -2,6 +2,7 @@
 layout: post
 permalink: /blog/container-rootfilesystems-in-prod
 title: "Container Root Filesystems in Production"
+redirect_from: [/2017/09/08/container-rootfilesystems-in-prod]
 date: "Sept 08, 2017"
 ---
 

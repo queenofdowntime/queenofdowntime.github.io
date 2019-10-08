@@ -2,6 +2,7 @@
 layout: post
 permalink: /blog/the-route-to-rootless-containers
 title: "The Route to Rootless Containers"
+redirect_from: [/2018/09/08/the-route-to-rootless-containers]
 date: "Sept 08, 2018"
 ---
 

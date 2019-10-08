@@ -2,6 +2,7 @@
 layout: post
 permalink: /blog/a-day-in-the-life-of-a-cf-engineer
 title: "A Day in the Life of a Cloud Foundry Engineer"
+redirect_from: [/2018/05/09/a-day-in-the-life-of-a-cf-engineer]
 date: "May 09, 2018"
 ---
 
