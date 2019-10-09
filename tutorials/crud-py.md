@@ -278,7 +278,7 @@ I do intend to write a nice summary here, but until I get around to that please 
     def start_server(self):
        server = pexpect.spawn("python api.py")
        server.expect('Running on http://127.0.0.1:5000')
-       yield server
+       yield
        server.kill(9)
     ```
 
