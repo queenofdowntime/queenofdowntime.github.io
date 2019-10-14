@@ -23,6 +23,9 @@ sudo dpkg -i *.deb
 
 **3. Edit grub conf files to update the version**
 
+_This step is not always necessary, but on some systems I find this has not been done automatically, so
+I would recommend at least checking these files._
+
 ```
 sed -i 's/4.4.0-137-generic/4.10.0-041000-generic/g' /boot/grub/grub.conf
 sed -i 's/4.4.0-137-generic/4.10.0-041000-generic/g' /boot/grub/menu.lst
