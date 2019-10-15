@@ -22,7 +22,8 @@ I now live in East London with my wife (also an engineer) and our many cactuses 
 
 My pronouns are she/her.
 
-I try to dedicate a few hours a week to [mentoring and teaching](/resources) minorities in tech.
+I try to dedicate a few hours a week to mentoring and teaching minorities in tech.
+My free learning resources/tutorials are available [here](/resources).
 If you or someone you know is new to the industry, is trying to make their next move, or is
 just looking for some general advice, please feel free to reach out. I can't promise my advice
 will be any good but I am happy to be a sounding board or sanity-check!
