@@ -46,7 +46,7 @@ standard deploy had failed on our component's shutdown of multiple Envoy proxies
 Okay so we weren't _that_ surprised. If a problem is going to happen, it usually won't come out of nowhere, but will often appear during a deploy.
 Even if our component isn't the one being upgraded, it becomes very 'active' at those times and the surface area for 'weirdness' (from the kernel with which we directly
 interact, to the anonymous app code we isolate) becomes more exposed. On most CF deployments, Garden is configured to destroy
-all containers when its job/service is restarted. This has no effect on users: their apps are immediately reshceduled to a machine which _isn't_ currently
+all containers when its job/service is restarted. This has no effect on users: their apps are immediately rescheduled to a machine which _isn't_ currently
 rolling. But if there are A LOT of application instances on that VMs... then odd things can happen, and we end up with several Github issues which
 begin "Deploy failed with...".
 
