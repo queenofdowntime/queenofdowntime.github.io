@@ -33,5 +33,7 @@ Here is that seo-d list of things I do:
 - tdd
 - pair programming
 - conference talking
+- project management
+- line management
 - [mentoring](/resources) / advice giving
 
