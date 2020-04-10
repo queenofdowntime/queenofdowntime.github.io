@@ -148,7 +148,7 @@ and [plugins](https://gist.github.com/Callisto13/436b6496e1b6ef149b88c38e8cc1d1a
 to override some of their more irritating choices.
 
 _There are zero docs on how to install that config, so [here is a gist](https://gist.github.com/Callisto13/440f21632b75b289d02daa81cf65e6ee) while I PR some.
-`a-new-hope` is geared up to write Go code, but you can add whatever you like to work in
+`a-new-hope` is geared up to write either Go code or shell scripts, but you can add whatever you like to work in
 your own language._
 
 &nbsp;
@@ -281,7 +281,9 @@ problems and do not provide the idiot-friendly user experience of IDEs out of th
 It takes a while to fully master enough of something like Vim to realise its power
 and not be frustrated by it, especially if you are coming from something which does
 everything but write the code for you (um, well, IntelliJ...).
-Not many people have the patience or discipline for that.
+Few people have the patience or discipline for that, not that there is anything
+special about me: I had no choice but to learn it as my team was a 100% pair-programming
+one and this setup was voted the least terrible of an endlessly disappointing selection.
 
 The downside of tmux is everyone's terminal size is set to that of the smallest screen.
 In other words, if you are on a 27" monitor, and your buddy is on a 13" laptop,
