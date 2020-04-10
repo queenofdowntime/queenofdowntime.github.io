@@ -17,7 +17,7 @@ The response was:
 
 I could immediately and deeply feel the pain in this innocuous response.
 
-That "bleh" is a multitude of frustrations boiled down into a single, tired shrug. "Bleh".
+That "bleh" is a multitude of frustrations boiled down into a single, resigned shrug. "Bleh".
 
 And VS Live Share is actually not terrible! For folks whose natural territory isn't
 the command line, who like a GUI, Microsoft have really done a great job at making
@@ -36,7 +36,8 @@ the full control and comfort of being in your own space.
 And if you are collaborating over screen-share... god help you.
 
 Pairing or collaborating is draining enough without the frustration of lag or
-the pain of viewing a blurred screen either bigger or smaller than yours.
+the pain of viewing a blurred screen which you would be very lucky to find fits
+your screen's size and resolution.
 Fortunately, with a little time, effort and the right set of tools, you never have
 to worry about these problems again.
 
@@ -65,8 +66,8 @@ There are just 4 tools you need to set up your seamless collaboration environmen
 but not insurmountable, learning curves. 1 is probably something you use often, if not all the time,
 and 1 requires minimal setup which you can then forget about.
 
-_This setup is the cumulative design of multiple teams/people across Pivotal, SAP and IBM, and AFAIK is still used
-by my old team :). I have added a little extra sugar._
+_This setup is the cumulative design of multiple teams/people across Pivotal, SAP and IBM.
+I have added a little extra sugar._
 
 ### Terminal
 
@@ -274,10 +275,10 @@ If you pair regularly, it is a good idea to have a common set of tmux and editor
 configs. This will mean that anyone in the team can  move around and write code in any
 machine they happen to be working from.
 
-**It goes without saying that you should only give people you trust access to your machine.**
+**I really hope you are already aware that should only give people you trust access to your machine.**
 
 Of course, no system is perfect. Terminal based editors have their own set of
-problems and do not provide the idiot-friendly user experience of IDEs out of the box.
+problems and do not provide the fool-proof user experience of IDEs out of the box.
 It takes a while to fully master enough of something like Vim to realise its power
 and not be frustrated by it, especially if you are coming from something which does
 everything but write the code for you (um, well, IntelliJ...).
