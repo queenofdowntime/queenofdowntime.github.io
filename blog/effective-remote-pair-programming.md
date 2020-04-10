@@ -47,7 +47,7 @@ to worry about these problems again.
 &nbsp;
 
 _I'm not going to go into pair-programming and what that means, you can read more
-about general pairing practices from many places like [here]() and [here]().
+about general pairing practices from many blogs like [this](https://tanzu.vmware.com/content/blog/the-elements-of-highly-effective-pair-programming).
 This is more about effective collaboration on anything in general._
 
 _I will say this: pair-programming is always, hands-down, the fastest and best way to level up a new dev,
@@ -147,7 +147,9 @@ have my [own `~/.vimrc`](https://gist.github.com/Callisto13/dc6448d5c6606a18be6a
 and [plugins](https://gist.github.com/Callisto13/436b6496e1b6ef149b88c38e8cc1d1a4)
 to override some of their more irritating choices.
 
-_There are zero docs on how to install that config, so [here is a gist]() while I PR some._
+_There are zero docs on how to install that config, so [here is a gist](https://gist.github.com/Callisto13/440f21632b75b289d02daa81cf65e6ee) while I PR some.
+`a-new-hope` is geared up to write Go code, but you can add whatever you like to work in
+your own language._
 
 &nbsp;
 
@@ -166,7 +168,7 @@ but you most likely want to keep that to yourself.
 Adding their public key will let them SSH into your machine over your ngrok tunnel.
 You can either ask them to send you one, or you can grab keys from Github.
 
-Create yourself and dirty little helper script:
+Create yourself and dirty little helper script to add their keys to your `~/.ssh/authorized_keys`:
 ```sh
 cat << EOF > ~/get_keys
 #!/bin/bash -e
@@ -185,9 +187,6 @@ And run it:
 ```
 ./get_keys <your buddy's github name>
 ```
-
-This will add their key(s) to your `~/.ssh/authorized_keys`, permitting them to SSH
-into your machine when you share the tunnel.
 
 ### Create a new tunnel
 
@@ -286,8 +285,8 @@ Not many people have the patience or discipline for that.
 
 The downside of tmux is everyone's terminal size is set to that of the smallest screen.
 In other words, if you are on a 27" monitor, and your buddy is on a 13" laptop,
-your terminal will be laptop-screen sized. For me the control, lack of lack and
-clarity of picture is a fair trade-off.
+your terminal will be laptop-screen sized. For me the control, absence of lag and
+clarity of picture is an acceptable trade-off.
 
 I hope this has been useful to some, and that even if the full pairing setup isn't for you,
 maybe you picked up some cool new tricks for your workflow.

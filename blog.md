@@ -9,6 +9,12 @@ menu: nav
   <ul class="post-list">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     <li>
+      <span class="post-meta">{{ "2020-04-10" | date: date_format }}</span>
+        <a class="post-link" href="/blog/remote-pair-programming">
+          {{ "How to pair-program remotely and not lose the will to live (or: there has never been a better time to learn Vim)" | escape }}
+        </a>
+    </li>
+    <li>
       <span class="post-meta">{{ "2019-10-14" | date: date_format }}</span>
         <a class="post-link" href="/blog/inotify-release-deadlock-envoy">
           {{ "Envoy Proxy Deadlocked My Cloud" | escape }}
