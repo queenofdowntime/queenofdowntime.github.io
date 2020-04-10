@@ -13,7 +13,7 @@ This will give you more space and mean that, if you thoroughly F this up, you ca
 
 If you have yet to narrow down to a particular version, you don't need to start compiling just now as you can still work with pre-compiled releases from the [ubuntu mainline](http://kernel.ubuntu.com/~kernel-ppa/mainline).
 
-See [Switching the Kernel here](/gist/switch-kernel).
+See [Switching the Kernel here](/assets/gists/switch-kernel).
 
 Once you have found the official version which contains the problem, you can see a list of the commits which went into it on the [ubuntu mainline](http://kernel.ubuntu.com/~kernel-ppa/mainline) version page, eg: [v4.14.60 changes](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10/CHANGES). You can also find further details of the commits at http://cdn.kernel.org/pub/linux/kernel/.
 
