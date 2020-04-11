@@ -37,7 +37,9 @@ hurt to ask).
           {{ "Introduction to Test-Driven Development" | escape }}
         </span>
       <span class="post-meta">
-      Code the drinking game 'Fizzbuzz' in either <a href="/resources/tutorials/fizzbuzz-py">Python</a>, <a href="/resources/tutorials/fizzbuzz-rb">Ruby</a> or <a href="/resources/tutorials/fizzbuzz-js">NodeJS</a>.
+      Code the drinking game 'Fizzbuzz' in either <a href="/resources/tutorials/fizzbuzz-py">Python</a>,
+      <a href="/resources/tutorials/fizzbuzz-rb">Ruby</a>,  <a href="/resources/tutorials/fizzbuzz-js">NodeJS</a> or
+      <a href="/resources/tutorials/fizzbuzz-go">Golang</a>.
       </span>
     </li>
     <li>
