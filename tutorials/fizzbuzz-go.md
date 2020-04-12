@@ -779,7 +779,7 @@ but are going to interact with it (in this case the command line).
     └── vendor
     ```
 
-    Open it up and the following into your `main.go`:
+    Open it up and paste the following into your `main.go`:
 
     ```go
     package main
@@ -810,6 +810,23 @@ but are going to interact with it (in this case the command line).
   # you need to git add the moved files so that git picks up the change
   git add fizzbuzz.go fizzbuzz_test.go fizzbuzz_suite_test.go
   git commit -m "integration test setup and restructuring"
+  ```
+
+  We have also started using more of the Gomega dependency in our integration test.
+  When you vendor a dependency, only the files you are actually using from those
+  packages are saved, so we need to re-vendor to ensure that the new gomega files
+  or subpackages (in this case `gexec` and `gbytes`) are included.
+
+  ```sh
+  go mod vendor # save all in-use dependencies to vendor/
+  go mod tidy # ensure duplicated dependencies and removed and go.sum is up to date
+  ```
+
+  Then we can commit:
+
+  ```sh
+  git add vendor/ go.sum
+  git commit -m "update dependencies"
   git push
   ```
 
@@ -911,7 +928,7 @@ but are going to interact with it (in this case the command line).
 
 ```sh
 git add integration/integration_test.go main.go
-git commit -m "test that non-numbers are handled"
+git commit -m "program errors when passed a non-number arg"
 git push
 ```
 
@@ -958,7 +975,7 @@ happens, but it would be cool if there was some nice user feedback, explaining
 how to use the program.
 
 1. Write your test.
-1. Make it pass.
+1. Update the code to make it pass.
 1. Commit your changes.
 
 ## Part 13: Tidying up
