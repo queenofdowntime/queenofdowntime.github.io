@@ -19,8 +19,9 @@ I could immediately and deeply feel the pain in this innocuous response.
 
 That "bleh" is a multitude of frustrations boiled down into a single, resigned shrug. "Bleh".
 
-And VS Live Share is actually not terrible! For folks whose natural territory isn't
-the command line, who like a GUI, Microsoft have really done a great job at making
+And VS Live Share is actually not terrible! For folks whose natural territory perhaps isn't
+the command line, or who like a GUI, or who prefer a full-featured IDE with a reassuringly
+low learning curve, Microsoft have really done a great job at making
 collaboration between devs a smoother experience than the one afforded by screen-sharing.
 
 But it still isn't perfect. For one, I am not a fan of the teeny-tiny (non-expandable) terminal
@@ -65,6 +66,10 @@ for neuro-atypical people. Use it wisely._
 There are just 4 tools you need to set up your seamless collaboration environment. 2 have hideous,
 but not insurmountable, learning curves. 1 is probably something you use often, if not all the time,
 and 1 requires minimal setup which you can then forget about.
+
+Because of these learning curves, this setup can be **very hard** to initially get into and become comfortable with,
+and it may end up not being worth the effort for some. All the tools are pretty neat on their own,
+so you may find one or two fit nicely within your current workflow.
 
 _This setup is the cumulative design of multiple teams/people across Pivotal, SAP and IBM.
 I have added a little extra sugar._
