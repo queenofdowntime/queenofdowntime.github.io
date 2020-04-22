@@ -72,7 +72,7 @@ and it may end up not being worth the effort for some. All the tools are pretty 
 so you may find one or two fit nicely within your current workflow.
 
 _This setup is the cumulative design of multiple teams/people across Pivotal, SAP and IBM.
-I have added a little extra sugar._
+I have simply noted it all down and added a little extra sugar._
 
 ### Terminal
 
@@ -97,7 +97,7 @@ and [this](https://www.youtube.com/watch?v=HjuHHI60s44) seem fairly comprehensiv
 
 ### ngrok
 
-Ngrok is a secure tunneling reverse proxy tool. It has many nifty uses, but in our case
+Ngrok is a secure* tunneling reverse proxy tool. It has many nifty uses, but in our case
 this is what is going to let your collaborating buddy securely SSH into your machine and,
 eventually, see whatever you see.
 
@@ -106,6 +106,10 @@ somewhere on your path, follow the instructions to set your auth-token.
 
 _If you have set custom networking and firewall rules on your machine, you may need
 to tweak those later in order to get our SSH tunnels working._
+
+_\* Edit: as people have been quick to point out, your own VPN would be a more secure option,
+with the bonus of being more palatable to your company's security team. I suggest `ngrok` in this guide as a quick and secure-enough way
+to set up and trying things out, but however secure they claim to be (and they are pretty good), it is still a 3rd party handling your traffic..._
 
 ### tmux
 
