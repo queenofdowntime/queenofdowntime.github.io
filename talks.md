@@ -17,7 +17,7 @@ menu: nav
     </li>
     <li>
       <span class="post-meta">{{ "2018-09-07" | date: date_format }}</span>
-        <a class="post-link" href="/placeholder">
+        <a class="post-link" href="https://www.youtube.com/watch?v=qXG_cChQgUg">
           {{ "The Route to Rootless" | escape }}
         </a>
       <span class="post-meta"><a href="https://2018.container.camp/uk/">{{ "Container Camp London 2018" | escape }}</a></span>
