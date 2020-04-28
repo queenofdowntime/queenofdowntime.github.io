@@ -6,7 +6,8 @@ Hi! Welcome to my random collection of things I have done and things I can do. I
 highly googleable list of skills below.
 
 If you are here on purpose, then you know that I am a Software / Systems Engineer
-and that I lead a team of very brilliant and lovely people at [Ori](https://www.ori.co/).
+and that I lead a team of very brilliant and lovely people at [Ori](https://www.ori.co/)
+([we are hiring](https://angel.co/company/ori-industries-1/jobs/566175-software-engineer-all-levels) by the way).
 You know that I design and build complex things with the use of Kubernetes controllers.
 
 Once up on a time I built containers and then went to conferences to stand on stage
