@@ -12,6 +12,9 @@ You know that I design and build complex things with the use of Kubernetes contr
 
 Once up on a time I built containers and then went to conferences to stand on stage
 talking about building those containers.
+I also won a "[Quiet Achiever](https://www.cloudfoundry.org/blog/and-the-community-award-recipients-are/)"
+award for my containery work... anyone
+who knows me will no-doubt find that hilarious.
 
 I write a blog at a cadence of about 1 post per year.
 
