@@ -179,8 +179,8 @@ Adding their public key will let them SSH into your machine over your ngrok tunn
 You can either ask them to send you one, or you can grab keys from Github.
 
 Create yourself and dirty little helper script to add their keys to your `~/.ssh/authorized_keys`:
+Call the file `get_keys`
 ```sh
-cat << EOF > ~/get_keys
 #!/bin/bash -e
 
 buddy="$1"
@@ -188,8 +188,11 @@ buddy="$1"
 keys=$(curl "https://api.github.com/users/$buddy/keys" | jq -r '.[] | .key')
 
 printf "%s\n" "$keys" >> ~/.ssh/authorized_keys
-EOF
+```
 
+Update the permissions:
+
+```sh
 chmod +x ~/get_keys
 ```
 
@@ -203,9 +206,8 @@ And run it:
 The host next needs to open up a secure tunnel via ngrok. (Hopefully when installing
 ngrok you verified it was working.)
 
-Let's write another dirty helper script for this:
+Let's write another dirty helper script for this, call this file `start_tunnel`:
 ```sh
-cat << EOF > ~/start_tunnel
 #!/bin/bash
 
 lsgrok() {
@@ -217,7 +219,7 @@ lsgrok() {
    host=$(echo "$url" | cut -d / -f 3 | cut -d : -f 1)
    port=$(echo "$url" | cut -d / -f 3 | cut -d : -f 2)
 
-   echo ssh -p "$port" "$(whoami)"@"$host"   >>  Quote this to prevent word splitting.
+   echo ssh -p "$port" "$(whoami)"@"$host"
   fi
 }
 
@@ -227,10 +229,13 @@ ngrok_init() {
 }
 
 ngrok_init
-sleep 1
+sleep 2
 lsgrok
-EOF
+```
 
+Update the permissions:
+
+```sh
 chmod +x ~/start_tunnel
 ```
 
