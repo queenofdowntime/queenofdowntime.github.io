@@ -18,7 +18,7 @@ then went to a web-dev bootcamp which I only vaguely used as I did not become a 
 
 In other lives I was a bar/nightclub manager, a copy-editor/proofreader, and an ESL teacher (this one in Rome).
 
-I now live in East London with my wife (also an engineer) and our many cactuses (cacti? cactae?).
+I now live in East London with my wife (also an engineer), our many cactuses (cacti? cactae?) and our kitten Pantalaimon.
 
 My pronouns are she/her.
 

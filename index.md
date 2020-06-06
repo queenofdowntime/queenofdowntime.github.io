@@ -32,12 +32,11 @@ Here is that seo-d list of things I do:
 - bosh
 - vim
 - ansible
-- ruby
 - ci / cd
 - tdd
 - pair programming
 - conference talking
-- project management
+- product management
 - line management
 - [mentoring](/resources) / advice giving
 
