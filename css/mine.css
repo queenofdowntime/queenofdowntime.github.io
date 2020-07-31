@@ -3,6 +3,12 @@
   max-width: 100%;
 }
 
+.ally {
+  display: block;
+  max-width: 100%;
+  float: right;
+}
+
 .home-div-right {
   display: block;
   float: right;
