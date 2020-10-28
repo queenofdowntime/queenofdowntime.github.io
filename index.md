@@ -12,7 +12,7 @@ highly googleable list of skills below.
 
 If you are here on purpose, then you know that I am a Software / Systems Engineer
 and that recently I was vaguely in charge of designing and building complex things with the use of Kubernetes controllers.
-You may know that I am currently in the market for a new Software Engineering role.
+I am currently NOT in the market for a new Software Engineering role.
 
 Once upon a time I built containers and then went to conferences to stand on stage
 talking about building those containers.

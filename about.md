@@ -5,16 +5,15 @@ permalink: /about
 menu: nav
 ---
 
-I like reading and cooking and diy and tattoos and martial arts and trekking
-(not the kind of trekking where you dress up and maybe Nimoy is there, but the kind
-of trekking where it is just you in a remote mountain range with a tent and 2 weeks
-of rations). On my days off I will either aim to read and finish a book or
-I will look for something in my home which needs the sort of fixing that can only
-be done by my most heaviest, most loudest tools. Unless I am speaking at a conference
-and then I will fret over that.
+I am an antisocial hiker and tattoo enthusiast who occasionally moonlights as a
+Software Engineer / tech leader. I am not, nor have I ever been, on any sort of social media
+so I would not recommend looking for me there. (Okay, actually, I am on LinkedIn, but only
+to sparingly use it for its original intended purpose, and not whatever uninspired social network
+route it seems to be going down these days.)
 
-I graduated from UCL with a degree in ancient history which I did not get to use because I 
-then went to a web-dev bootcamp which I only vaguely used as I did not become a web d3vel0per but somehow ended up deep in cloud computing.
+I graduated from UCL with a degree in ancient history which I did not get to use because I
+then went to a web-dev bootcamp, which skills I only vaguely used as I did not become a web
+d3vel0per but somehow ended up deep in cloud computing.
 
 In other lives I was a bar/nightclub manager, a copy-editor/proofreader, and an ESL teacher (this one in Rome).
 

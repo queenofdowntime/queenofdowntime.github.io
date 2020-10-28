@@ -17,3 +17,5 @@ So here is a list of people who produce excellent content:
 - [Julia Evans](https://jvns.ca/)
 - [Aleksa Sarai](https://www.cyphar.com/)
 - [Maël Valais](https://maelvls.dev/)
+- [Kay Lack](https://softwarearchaeology.substack.com/people/18117422-kay-lack)
+- [Michael Kashin](https://networkop.co.uk/)
