@@ -178,7 +178,7 @@ but you most likely want to keep that to yourself.
 Adding their public key will let them SSH into your machine over your ngrok tunnel.
 You can either ask them to send you one, or you can grab keys from Github.
 
-Create yourself and dirty little helper script to add their keys to your `~/.ssh/authorized_keys`:
+Create yourself a dirty little helper script to add their keys to your `~/.ssh/authorized_keys`:
 Call the file `get_keys`
 ```sh
 #!/bin/bash -e
