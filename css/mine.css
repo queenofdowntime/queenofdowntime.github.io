@@ -42,3 +42,9 @@
   border-bottom: 1px solid;
   text-decoration: none;
 }
+
+.italix {
+  font-size: 14px;
+  color: #828282;
+  font-style: italic;
+}

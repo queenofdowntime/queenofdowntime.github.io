@@ -5,9 +5,19 @@ permalink: /blog
 menu: nav
 ---
 
+<span class="italix">{{ "New to code? Check out my [resources page](/resources) for some free learning materials." }}</span>
+
 <div class="home">
+
   <ul class="post-list">
+  <li></li>
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+    <li>
+      <span class="post-meta">{{ "2020-10-31" | date: date_format }}</span>
+        <a class="post-link" href="/blog/how-to-tech-test">
+          {{ "How to get the most out of your next tech test" | escape }}
+        </a>
+    </li>
     <li>
       <span class="post-meta">{{ "2020-04-10" | date: date_format }}</span>
         <a class="post-link" href="/blog/remote-pair-programming">
