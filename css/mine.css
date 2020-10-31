@@ -3,12 +3,6 @@
   max-width: 100%;
 }
 
-.ally {
-  display: block;
-  max-width: 100%;
-  float: right;
-}
-
 .home-div-right {
   display: block;
   float: right;
@@ -25,3 +19,26 @@
   }
 }
 
+.site-banner {
+  color: #E3E3E3;
+  background-color: #6A6A6A;
+  border-top: 5px solid #424242;
+  border-bottom: 1px solid #FFFFFF;
+  min-height: 55.95px;
+  position: relative;
+}
+
+.banner-text {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 54px;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.site-banner .plain-link {
+  color: #fdfdfd;
+  border-bottom: 1px solid;
+  text-decoration: none;
+}

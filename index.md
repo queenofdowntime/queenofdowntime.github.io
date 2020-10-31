@@ -3,8 +3,6 @@ layout: home
 ---
 <div class="home-div-right">
   <img class="avatar" src="/assets/images/me.jpg" title="totally baller headshot">
-  <a href="https://blacklivesmatter.com/"><img class="ally" src="/assets/images/blm.png" title="I support the Black Lives Matter movement. Click here to find out how you can too."></a>
-  <img class="ally" src="/assets/images/tlm.png" title="Trans women are women, trans men are men, and black trans women bear the brunt of the world's hate. I could not find a link for an offical support site, please let me know if there is one. In the absence of that I recommend watching Disclosure on Netflix.">
 </div>
 
 Hi! Welcome to my random collection of things I have done and things I can do. If you are here by accident, it is probably because you hit my
