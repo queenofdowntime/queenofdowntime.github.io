@@ -13,6 +13,12 @@ menu: nav
   <li></li>
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     <li>
+      <span class="post-meta">{{ "2020-11-05" | date: date_format }}</span>
+        <a class="post-link" href="/blog/hiking-in-cairngorms">
+          {{ "8 Days Hiking Alone in the Cairngorms, Scotland" | escape }}
+        </a>
+    </li>
+    <li>
       <span class="post-meta">{{ "2020-10-31" | date: date_format }}</span>
         <a class="post-link" href="/blog/how-to-tech-test">
           {{ "How to get the most out of your next tech test" | escape }}
