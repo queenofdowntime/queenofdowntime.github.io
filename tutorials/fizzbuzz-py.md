@@ -83,7 +83,7 @@ complete confidence that your code does what it is supposed to do.
 ![alt text](http://turnoff.us/image/en/tdd-vs-ftt.png)
 _[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
 
-So lets get going with our first test:
+So let's get going with our first test:
 
 **Steps**:
 
@@ -169,7 +169,7 @@ So let's start with the first error we were given: `NameError: name 'fizzbuzz' i
 1. Save the file and run the test again: `assert None == True`.
 	It's a little hard to read, I'll grant you. The test is evaluating our fizzbuzz function, and the result is None.
 	Our test is asserting that the result should be true but of course we are returning nothing.
-	So lets go give it what it wants.
+	So let's go give it what it wants.
 
 1. In `fizzbuzz.py`, make `is_divisible_by_three` return `True`:
 

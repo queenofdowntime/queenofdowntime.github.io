@@ -97,7 +97,7 @@ complete confidence that your code does what it is supposed to do.
 ![alt text](http://turnoff.us/image/en/tdd-vs-ftt.png)
 _[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
 
-So lets get going with our first test:
+So let's get going with our first test:
 
 **Steps**:
 
@@ -191,7 +191,7 @@ top of `spec/fizzbuzz_spec.rb`
 	```
 
 	Our test is expecting our function to return `true` but it is getting `nil`.
-	So lets go give it what it wants.
+	So let's go give it what it wants.
 
 1. Go back to `lib/fizzbuzz.rb` and make `is_divisible_by_three?` return `true`
 

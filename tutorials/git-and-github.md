@@ -268,7 +268,7 @@ different order, so don't go copying and pasting the whole lot.
 	directory, but that it is still `untracked`. Git has given us a hint as to how
 	we can start tracking files: `use "git add" to track`.
 
-	So lets add our README: `git add README.md`
+	So let's add our README: `git add README.md`
 
 	Now when we run `git status` again, we can see that (this time in green), git
 	knows that we want it to track a new file.

@@ -14,6 +14,11 @@ To complete this tutorial, you will need to have the following installed:
 
 Think you are missing something? [Check/Install here](https://github.com/fouralarmfire/square-one/blob/master/tutorials/tdd-setup.md).
 
+This tutorial assumes you have at least:
+- Written a "Hello World!" Go program
+- Built and executed that binary on your command line
+- ... and that's it! This is a beginner friendly class
+
 ## Task:
 Using [TDD](https://www.agilealliance.org/glossary/tdd), write a program which
 will help you cheat at the drinking game fizzbuzz.
@@ -120,7 +125,7 @@ complete confidence that your code does what it is supposed to do.
 ![alt text](http://turnoff.us/image/en/tdd-vs-ftt.png)
 _[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
 
-So lets get going with our first test:
+So let's get going with our first test:
 
 **Steps**:
 
@@ -368,7 +373,7 @@ So let's start with the first error we were given: `no non-test Go files`.
 
 	Excellent! We have told our test that when function `IsDivisibleByThree` receives
 	the number `3`, the answer should be `true`.
-	So lets go give it what it wants.
+	So let's go give it what it wants.
 
 1. Go back to `fizzbuzz.go` and make `IsDivisibleByThree` return `true`
 

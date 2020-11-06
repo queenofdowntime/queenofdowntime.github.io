@@ -130,7 +130,7 @@ complete confidence that your code does what it is supposed to do.
 ![alt text](http://turnoff.us/image/en/tdd-vs-ftt.png)
 _[turnoff.us](http://turnoff.us/geek/tdd-vs-ftt/)_
 
-So lets get going with our first test:
+So let's get going with our first test:
 
 **Steps**:
 
@@ -232,7 +232,7 @@ So let's start with the first error we were given: `ReferenceError: fizzbuzz is 
 
 	That is admittedly a very unhelpful error (javascript is great at unhelpful errors), but we can make a guess:
 	Our test is expecting our function to return `true` but it is getting `undefined` or nothing.
-	So lets go give it what it wants.
+	So let's go give it what it wants.
 
 1. Go back to `fizzbuzz.js` and make `isDivisibleByThree` return `true`
 
