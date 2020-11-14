@@ -9,7 +9,7 @@ Hi! Welcome to my random collection of things I have done and things I can do. I
 highly googleable list of skills below.
 
 If you are here on purpose, then you know that I am a Software / Systems Engineer
-at Weaveworks where I do lots of fun opensource Kubernetes related things.
+at [Weaveworks](https://www.weave.works/) where I do lots of fun opensource Kubernetes related things.
 I am currently NOT in the market for a new Software Engineering role.
 
 Once upon a time I built containers and then went to conferences to stand on stage

@@ -143,6 +143,9 @@ that it fails in the way it should. When it comes to unit coverage 85% is an acc
 those of you who practice [TDD](https://www.agilealliance.org/glossary/tdd/#q=~(infinite~false~filters~(postType~(~'page~'post~'aa_book~'aa_event_session~'aa_experience_report~'aa_glossary~'aa_research_paper~'aa_video)~tags~(~'tdd))~searchTerm~'~sort~false~sortDirection~'asc~page~1))
 will know not to stand for less than 100% in the majority of cases.
 
+![alt text](http://turnoff.us/image/en/depressed-developer-17.png)
+_[turnoff.us](http://turnoff.us/geek/the-depressed-developer-17/)_
+
 If you know how to, run all your test in a clean environment (ie. in a Container).
 Provide your reviewers with a handy script so that they can also run your tests in a container
 with the image and settings you have been using.

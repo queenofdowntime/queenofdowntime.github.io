@@ -1,6 +1,7 @@
 .avatar {
   display: block;
   max-width: 100%;
+  border-radius: 10%;
 }
 
 .home-div-right {
