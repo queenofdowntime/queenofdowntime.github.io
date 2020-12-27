@@ -397,7 +397,7 @@ The benefit of hut-to-hut hiking is of course not needing to carry all that extr
 The benefit of camping is that you can drop wherever you want, whenever you want. And thanks to Norway's principle of _allemannsretten_, the thousand year old right to roam,
 there is no need to worry about trespassing, so long as you follow the basic [rules of camping etiquette and Leave No Trace](https://lnt.org/why/7-principles/).
 
-To see what I took with me, check out my [LighterPack gearlist](https://lighterpack.com/r/66oidb). If you have any questions about Norway or hiking in general, please don't hesitate to reach out, email at the bottom.
+To see what I took with me, check out my [gearlist](https://packstack.io/1342/norway-voss-dale). If you have any questions about Norway or hiking in general, please don't hesitate to reach out, email at the bottom.
 
 &nbsp;
 

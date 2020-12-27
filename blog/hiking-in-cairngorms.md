@@ -204,7 +204,7 @@ you have huge cabins with bookable bunk-beds. UK emergency refuges are exactly t
 While people do happily pack themselves in like sardines (in non-Covid years at least), they are
 teeny and space may run out by the time you get there. Bring a tent.
 
-I took a 2 person tent which, while weighing around than 1.5kg, I worried before going
+I took a 2 person tent which, weighing around 1.7kg, I worried
 would be overkill for just me. In the end I was glad of the extra space and comfort.
 The weather was pretty crap most of the time, which meant I had no option of hanging
 around outside when I was as camp. I will eventually spend some Serious Money and buy
@@ -215,7 +215,7 @@ and around freezing each night, once or twice sliding just below. I don't bring 
 me, but I choose it all very carefully and I wasn't cold. My [mat](https://www.thermarest.com/ie/sleeping-pads/fast-and-light/neoair-xtherm-sleeping-pad/neoair-xtherm.html)/[liner](https://www.seatosummit.co.uk/products/travel-liners/thermolite-reactor-fleece-liner/)/[bag](https://alpkit.com/collections/sleeping-bags/products/pipedream-600)
 sleep system was probably a bit much for this trip (I was too warm a couple of nights) but I was very happy
 with it and slept so well. I am neither a too-cold nor too-warm sleeper, but it is something
-I am paranoid about. You can find my full gearlist [here](https://lighterpack.com/r/fhicwn), but when picking
+I am paranoid about. You can find my full gearlist [here](https://packstack.io/1343/scotland-2020-cairngorms), but when picking
 your own gear it is important to know your own body, regardless of what works for random
 people on the internet.
 
@@ -227,7 +227,7 @@ forget you can run to a shop like I did to break some notes. Parking costs £3 p
 which I think is very reasonable.
 
 Normally at the end of a trip I would have pushed myself so hard that I collapse
-in the airport and spend an uncomfortable journey home various muscle, joint and nerve
+in the airport and spend an uncomfortable journey home as various muscle, joint and nerve
 issues (yes, I have all that!) make themselves known. This time I was... fine.
 Probably for the best, since I had a 9 hour drive to look forward to, but I did miss
 the satisfied exhaustion of pushing my body to its breaking point.
