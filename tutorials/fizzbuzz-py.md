@@ -57,7 +57,7 @@ $ python fizzbuzz.py 7
 	echo "tdd exercise in python" > README.md
 	git add README.md
 	git commit -m "readme.md"
-	git push -u origin master
+	git push -u origin main
 	```
 
 ## Part 2: Our first test

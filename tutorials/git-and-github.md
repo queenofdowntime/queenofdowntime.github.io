@@ -58,7 +58,7 @@ git add README.md # track that file
 git status # see that the file is now tracked
 git commit -m "first commit - adds readme" # commit to the state of your project
 git log # see the (short) commit history of your project
-git push -u origin master # push your local version to the cloud
+git push -u origin main # push your local version to the cloud
 
 # refresh your browser and see your online remote version has been updated
 
@@ -92,7 +92,7 @@ git revert <commit sha> # if the commit has been already pushed. use 'git log' t
 # work from a new branch
 git checkout -b <new-branch-name>
 git push origin <new-branch-name>
-git checkout master
+git checkout main
 git merge <new-branch-name>
 git branch -d <new-branch-name> # delete local
 git push origin --delete <new-ranch-name> # delete remote
@@ -304,28 +304,28 @@ different order, so don't go copying and pasting the whole lot.
 	To do that, we have to `push` our commits to our remote:
 
 	```sh
-	git push -u origin master
+	git push -u origin main
 	```
 
-	We know what `push` and `origin` mean, but what are `-u` and `master`?
-	Let's start with `master`. If you run `git branch`, you should see `* master`.
+	We know what `push` and `origin` mean, but what are `-u` and `main`?
+	Let's start with `main`. If you run `git branch`, you should see `* main`.
 	The git workflow is based entirely around branches. Every project has one main
-	branch, `master`: this is the version of your project which must always be kept
+	branch, `main`: this is the version of your project which must always be kept
 	in a fully working state. You should never commit broken or in-progress code
-	to `master`.
+	to `main`.
 
 	If you have any new ideas, or experiments you want to test out, they should be
-	built on a parallel branch. This branch is based upon `master` but will not
+	built on a parallel branch. This branch is based upon `main` but will not
 	affect it, meaning that people who come to your project will have access to a
 	working version you can be proud of. Branches are also useful for when you don't
 	quite have time to finish something that day, but you still want to save your
 	work for later.
 
 	When your experiments work out, or you finish that new idea, you can pull those
-	commits onto `master`, and carry on normally.
+	commits onto `main`, and carry on normally.
 
 	We will go over how to work with more branches later; for now let's just stick
-	with `master`.
+	with `main`.
 
 	`-u` stands for `upstream`. The `upstream` version is the main source of your
 	project. You may think the main source is your computer but no. As your project
@@ -357,7 +357,7 @@ command line and how your computer runs programs.
 1. Run `git log` to see your growing project history.
 1. Finally we can run `git push` to send our code to the remote version.
 
-	_**Note**: this time we did not need to run the push command with `-u origin master`._
+	_**Note**: this time we did not need to run the push command with `-u origin main`._
 	_That is because git stored the information about which upstream branch this local one is mapped to._
 	_From now on, for this branch, all we need to say is `git push`._
 
@@ -508,7 +508,7 @@ the world, but it would be cool if it could say hello to specific people.
 1. Complete the second [Hello World](https://github.com/fouralarmfire/square-one/blob/master/tutorials/hello-world-2.md#hello-world-2) exercise.
 1. Run `git status`. It should say that your `hello` file has changed.
 
-	This time, we are not going to commit to `master`. Our "Hello World!" program
+	This time, we are not going to commit to `main`. Our "Hello World!" program
 	is in an unfinished state: it can't say hello to the world anymore, just to
 	whichever arg is passed on the command line.
 
@@ -527,7 +527,7 @@ the world, but it would be cool if it could say hello to specific people.
 
 	This means that when we made our `hello` program say hello to just one person
 	at a time, we broke that contract with our users. Our new feature is still a
-	work in progress so we should not push it to `master` just yet.
+	work in progress so we should not push it to `main` just yet.
 
 	Of course, we could just jump right in and fix it so that both the original
 	feature and the new work perfectly together, but then we would learn nothing
@@ -539,7 +539,7 @@ the world, but it would be cool if it could say hello to specific people.
 	want to ensure that what we have done so far is saved somewhere we can't spill
 	coffee on it.
 
-	So in order to not pollute the `master` branch, we are going to push to a wip
+	So in order to not pollute the `main` branch, we are going to push to a wip
 	(work in progress) branch.
 
 1. Create your new branch by running:
@@ -566,7 +566,7 @@ the world, but it would be cool if it could say hello to specific people.
 	git push origin wip-hello-name
 	```
 
-1. If you go to your Github repo in your browser now, you'll see that your `master`
+1. If you go to your Github repo in your browser now, you'll see that your `main`
 	branch has no record of your 'wip' commit. But, if you click on the `Branch:`
 	dropdown button to the left, and switch to your `wip-hello-name` branch, you
 	should see that this branch has your new experimental changes.
@@ -582,7 +582,7 @@ the world, but it would be cool if it could say hello to specific people.
 
 ## Part 12: Merging branches
 
-Now let's finish our new feature and merge everything back into `master`.
+Now let's finish our new feature and merge everything back into `main`.
 
 **Steps**:
 
@@ -596,19 +596,19 @@ Now let's finish our new feature and merge everything back into `master`.
 	git push origin wip-hello-name
 	```
 
-1. Again, if you go to your repo online, you will see that `master` has no record
+1. Again, if you go to your repo online, you will see that `main` has no record
 	of your 2 commits but `wip-hello-name` does.
-	Now we need to get the 'wip' work into `master`, for all your users to enjoy.
+	Now we need to get the 'wip' work into `main`, for all your users to enjoy.
 
 1. You can also see which commits are on which branch from the command line.
 	From your `wip-hello-name` branch, you can run `git log` and see your two
-	'wip' commits as well as your original commits which you did on `master`.
+	'wip' commits as well as your original commits which you did on `main`.
 
-	Switch back to the `master` branch with `git checkout master` (you do not need the `-b` this time
-	as the branch already exists) and run `git log` again. You should see that `master` only has the commits you made before you
+	Switch back to the `main` branch with `git checkout main` (you do not need the `-b` this time
+	as the branch already exists) and run `git log` again. You should see that `main` only has the commits you made before you
 	started working on the new feature.
 
-	To merge those commits into `master`, we need to run:
+	To merge those commits into `main`, we need to run:
 
 	```sh
 	git merge wip-hello-name
@@ -618,10 +618,10 @@ Now let's finish our new feature and merge everything back into `master`.
 	If unpredictacble things start to happen while in Vim, press the Escape key first, and then `:wq`.
 	(You can learn more about how to use the Vim text editor by typing `vimtutor` into a new terminal window.)
 
-	Now if we run `git log` again, we see that `master` now has the commits we
-	made on `wip-hello-name`. We can now push our new feature on `master` with `git push`.
+	Now if we run `git log` again, we see that `main` now has the commits we
+	made on `wip-hello-name`. We can now push our new feature on `main` with `git push`.
 
-1. After `master` is up to date we can delete both our local and remote versions
+1. After `main` is up to date we can delete both our local and remote versions
 	of `wip-hello-name`:
 
 	```sh

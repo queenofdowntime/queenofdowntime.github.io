@@ -54,7 +54,7 @@ $ ./fizzbuzz.rb 7
 	echo "tdd exercise in ruby" > README.md
 	git add README.md
 	git commit -m "readme.md"
-	git push -u origin master
+	git push -u origin main
 	```
 
 1. Create 2 subdirectories, `lib` and `spec`, in your project. `lib` you will

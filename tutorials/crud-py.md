@@ -140,7 +140,7 @@ I do intend to write a nice summary here, but until I get around to that please 
 	```sh
 	git add Pipfile Pipfile.lock README.md
 	git commit -m "initial: setup and readme.md"
-	git push -u origin master
+	git push -u origin main
 	```
 
 ## Part 2: The first test

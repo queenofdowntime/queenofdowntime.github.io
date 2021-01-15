@@ -63,7 +63,7 @@ $ ./fizzbuzz 7
 	echo "tdd exercise in go" > README.md
 	git add README.md
 	git commit -m "readme.md"
-	git push -u origin master
+	git push -u origin main
 	```
 
 1. Initialize your Go project. This is how we store information about which version of Go we are using,

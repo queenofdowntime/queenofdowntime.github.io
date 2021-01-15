@@ -54,7 +54,7 @@ $ node fizzbuzz.js 7
 	echo "tdd exercise in node" > README.md
 	git add README.md
 	git commit -m "readme.md"
-	git push -u origin master
+	git push -u origin main
 	```
 
 1. Initialize your `node_modules`. This is where we store the dependencies we want our program to use. 'Dependencies' are
