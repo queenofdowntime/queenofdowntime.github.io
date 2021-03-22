@@ -121,7 +121,7 @@ dropped to a general roar, I lay waiting for the next one. It was exhilarating.
 
 After an hour of this, nerves frayed and yet still grinning like an idiot, I was increasingly worried
 that my tent poles would not survive much longer. The [MSR Hubba Hubba NX](https://www.msrgear.com/ie/tents/backpacking-tents/hubba-hubba-nx-2-person-backpacking-tent/06204.html)
-is well know for being pretty much perfect for everything _except_ for how it holds up in wind.
+is well known for being pretty much perfect for everything _except_ for how it holds up in wind.
 By this point I had resigned myself to a sleepless night, because even without the extraordinary noise,
 lying in the dark watching your shelter and only means of defence against the elements
 flex and bend to near breaking point around you doesn't exactly induce calm.

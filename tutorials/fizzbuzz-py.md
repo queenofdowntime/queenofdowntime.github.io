@@ -228,7 +228,7 @@ to force ourselves to do the right thing.
 ## Part 5: Around we go again...
 
 **Steps**:
-1. In `fizzbuzz_test.py`, add another `test_` function (again still within the same `Class`)
+1. In `fizzbuzz_test.py`, add another `test_` function
 	to test whether numbers are divisible by 5:
 
 	```py
@@ -291,7 +291,7 @@ can't really play the game with this.
 	def test_says_fizz():
 		assert fizzbuzz.says(3) == 'fizz'
 	```
-	Now we can use `assertEqual` from `unittest` to check whether `fizzbuzz.says(3)` returns 'fizz'.
+	Now we can use `assert` to check whether `fizzbuzz.says(3)` returns 'fizz'.
 1. Run your tests. They should fail in a way which by now should be familiar.
 1. Go into `fizzbuzz.py` and create that function. (just define. don't implement.)
 1. Run the tests again and follow the error message, remember to do just enough
@@ -354,7 +354,7 @@ but are going to interact with it (in this case the command line).
 
 You would normally write your `integration` tests in a separate place (the code too, but for this you can ignore that),
 so start by creating an `integration_test.py` file and setting up the file in the same
-way as we did last time. (You may want to name the class `TestIntegration`.)
+way as we did last time.
 
 In `fizzbuzz.py` you will need to find a way to get the command line arguments
 and pass them to your `says` function.
